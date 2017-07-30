@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第23章</title>
+</head>
+<body>
+
+<!-- 使用 过渡 VS. 反向过渡 -->
+<p id="hov">May you have enough <span>happiness</span> to make you sweet,enough trials to make you strong,enough sorrow to keep you human,enough hope to make you happy? Always put yourself in others’shoes.If you feel that it hurts you,it probably hurts the other person, too.</p>
+<style>
+	#hov {
+		padding: 10px;
+		border: medium double black;
+		background-color: lightgray;
+		font-family: sans-serif;
+	}
+	#hov span {
+		font-size: large;
+		border: medium solid black;
+		-webkit-transition-delay:50ms;
+		-webkit-transition-duration:1000ms;
+	}
+	#hov span:hover {
+		font-size: x-large;
+		border: medium solid white;
+		background-color: green;
+		color: white;
+		padding: 10px;
+		-webkit-transition-delay:100ms;
+		-webkit-transition-property:background-color,color,padding,font-size,border;
+		-webkit-transition-duration:1500ms;
+		-webkit-transition-timing-function:ease-out;
+	}
+</style>
+<br>
+<hr>
+<br>
+
+
+<!-- 动画 -->
+<p id="ani">There are moments in life when you miss someone so much that you just want to pick them from your dreams and hug them for real! Dream what you want to dream;go where you want to go;be what you want to be,because you have only one life and one chance to do all the things you want to do.</p>
+<style>
+	#ani {
+		padding: 10px;
+		border: medium solid red;
+		background-color: lightblue;
+		font-family: sans-serif;
+		font-size: medium;
+	}
+	#ani:hover {
+		-webkit-animation-delay:2s;
+		-webkit-animation-duration:200ms;
+		-webkit-animation-iteration-count:2;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-name:"MyKeyFrames";
+		-webkit-animation-direction:alternate;
+	}
+	@-webkit-keyframes MyKeyFrames {
+		from {
+			font-size: xx-small;
+			background-color: red;
+		}
+		to {
+			font-size: x-large;
+			border: thick double blue;
+			background-color: lightgray;
+			color: black;
+			font-weight: bold;
+			padding: 10px;
+		}
+	}
+</style>
+<br><hr><br>
+
+
+<!-- 页面一加载，就使用动画 -->
+<p id="init">May you have enough happiness to make you sweet,enough trials to make you strong,enough sorrow to keep you human,enough hope to make you happy?</p>
+<style>
+	#init {
+		font-size: large;
+		border: medium solid black;
+		/*-webkit-animation-delay:200ms;*/
+		-webkit-animation-duration:1s;
+		-webkit-animation-iteration-count:infinite;
+		-webkit-animation-direction:alternate;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-name:"MyAni1","MyAni2";
+	}
+	@-webkit-keyframes MyAni1 {
+		to {
+			border: medium solid red;
+			background-color: green;
+		}
+	}
+	@-webkit-keyframes MyAni2 {
+		to {
+			color: blue;
+			font-size: xx-large;
+		}
+	}
+</style>
+<br><hr><br>
+
+
+<!-- 停止和启动动画 -->
+<p id="toggle">When you were born,you were crying and everyone around you was smiling.Live your life so that when you die,you're the one who is smiling and everyone around you is crying.</p>
+<button class="btn" value="running">Running</button>
+<button class="btn" value="paused">Paused</button>
+<style>
+	#toggle {
+		padding: 10px;
+		border: medium double red;
+		background-color: lightgray;
+		font-family: sans-serif;
+	}
+	@-webkit-keyframes GS {
+		from {
+			font-size: large;
+			border: medium solid black;
+		}
+		to {
+			font-size: x-large;
+			border: medium solid white;
+			background-color: green;
+			color: white;
+			padding: 4px;
+		}
+	}
+	#toggle {
+		-webkit-animation-duration:2500ms;
+		-webkit-animation-iteration-count:infinite;
+		-webkit-animation-direction:alternate;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-name:"GS";
+	}
+</style>
+<script>
+	var btns = document.querySelectorAll(".btn");
+	var oP = document.getElementById("toggle");
+	for(var i=0; i<btns.length; i++){
+		btns[i].onclick = function(e){
+			oP.style.webkitAnimationPlayState = e.target.value;
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 变换 -->
+<p id="trans">Please send this message to those people who mean something to you,to those who have touched your life in one way or another,to those who make you smile when you really need it,to those that make you see the brighter side of things when you are really down,to those who you want to let them know that you appreciate their friendship.</p>
+<style>
+	#trans {
+		padding: 10px;
+		width: 500px;
+		border: medium solid red;
+		background-color: lightgray;
+		font-family: sans-serif;
+		font-size: x-small;
+		-webkit-transform:rotate(-45deg) scaleX(1.2); /*旋转45度，沿x轴放大1.2倍*/
+		-webkit-transform-origin:right top;  /*指定变换的起点*/
+	}
+	#trans:hover {
+		-webkit-transform:rotate(0deg) scaleX(1); 
+		-webkit-transition-duration:1.5s;
+		-webkit-transition-property:-webkit-transform; /*把变换作为过渡来处理，动起来*/
+		-webkit-transition-delay:200ms;
+	}
+</style>
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

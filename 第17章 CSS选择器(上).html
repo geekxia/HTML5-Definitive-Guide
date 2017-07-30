@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第17章</title>
+	<style>
+		* {
+			border:thin black solid;
+			padding: 4px;
+			text-decoration: none;
+		}
+		a {
+			font-size: 18px;
+		}
+		a.api {
+			color: red;
+		}
+
+		/*属性选择器*/
+		[href] {
+			background-color: #eee;
+		}
+		[class~="class2"] {
+			border: 2px solid red;
+		}
+		[lang|="en"] {
+			padding: 10px;
+		}
+
+
+		/*并集选择器*/
+		a, p, [class] {
+			font-size: 20px;
+			cursor: pointer;
+		}
+		/*后代选择器*/
+		body span {
+			display: block;
+		}
+		#mytable td{
+			border: thin black solid;
+			padding: 4px;
+		}
+		/*子代选择器*/
+		body>table, tr>td{
+			border: 2px solid red;
+		}
+
+		/*相邻兄弟选择器*/
+		 table+div {
+		 	width: 500px; height: 50px;
+		 	background-color: red;
+		 	margin-top: 20px;
+		 	border: none;
+		 }
+
+		 table+div>div {
+		 	display: inline-block;
+		 	width: 50px; height: 20px;
+		 	background-color: green;
+		 	margin-left: 10px;
+		 }
+
+		 /*伪元素选择器*/
+		 p.text::first-line {
+		 	background-color: grey;
+		 	color: white;
+		 }
+		 p::first-letter {
+		 	background-color: blue;
+		 	color: white;
+		 	border: thin black solid;
+		 	padding: 4px;
+		 }
+
+		 .mi::before {
+		 	content: "click me to ";
+		 }
+		 .mi::after {
+		 	content: " !";
+		 }
+
+		 /*CSS计数器*/
+		 body {
+		 	counter-reset: paracount 3;		/*计数器名称*/
+		 }
+		 p::before {
+		 	content: counter(paracount) ". ";	/*要插入的内容*/
+		 	counter-increment: paracount 2;		/*计数器的增量*/
+		 }
+	</style>
+</head>
+<body>
+
+<a href="http://www.baidu.com">访问百度</a>
+<p>我喜欢<span>百度</span>的智库！</p>
+<a href="http://www.mi.com" class="api">查看小米</a><br><br><br><br>
+
+
+<table id="mytable">
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+</table>
+<div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+
+
+<p class="text">失败不再是我奋斗的代价。它和痛苦都将从我的生命中消失。失败和我，就像水火一样，互不相容。我不再像过去一样接受它们。我要在智慧的指引下，走出失败的阴影，步入富足、健康、快乐的乐园，这些都超出了我以往的梦想。我要是能长生不老，就可以学到一切，但我不能永生，所以，在有限的人生里，我必须学会忍耐的艺术，因为大自然的行为一向是从容不迫的。造物主创造树中之王橄摊树需要一百年的时间，而洋葱经过短短的九个星期就会枯老。我不留恋从前那种洋葱式的生活，我要成为万树之王–橄榄树，成为现实生活中最伟大的推销员。</p>
+
+<p class="text">事实上，成功与失败的最大分野，来自不同的习惯。好习惯是开启成员的钥匙，坏习惯则是一扇向失败敞开的门。因此，我首先要做的便是养成良好的习惯，全心全意去实行。</p>
+
+<a href="http://www.mi.com" class="mi">小米</a>
+<a href="http://www.mi.com" class="mi">大米</a>
+
+
+<!-- 本章结束 -->
+
+	
+</body>
+</html>

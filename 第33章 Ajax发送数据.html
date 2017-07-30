@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第33章</title>
+	<style>
+		.table {display: table; border: 1px solid red;}
+		.row {display: table-row;}
+		.cell {display: table-cell;padding: 5px;}
+		.label {text-align: center;}
+	</style>
+</head>
+<body>
+
+<!-- 准备向服务器发送数据 -->
+<form action="" method="post" id="fruitform">
+	<div class="table">
+		<div class="row">
+			<div class="cell label">
+				Bananas:
+			</div>
+			<div class="cell">
+				<input type="number" name="bananas" value="2">				
+			</div>
+		</div>
+		<div class="row">
+			<div class="cell label">
+				Apples:
+			</div>
+			<div class="cell">
+				<input type="number" name="apples" value="5">				
+			</div>
+		</div>
+		<div class="row">
+			<div class="cell label">
+				Cherries:
+			</div>
+			<div class="cell">
+				<input type="number" name="cherries" value="20">				
+			</div>
+		</div>
+		<div class="row">
+			<div class="cell label">Total:</div>
+			<div id="results" class="cell">0 items</div>
+		</div>
+	</div>
+	<button id="submit" type="submit">Submit Form</button>
+</form>
+
+<!-- 手动收集和发送数据 -->
+<script>
+	// 给提交按钮添加点击事件，并阻止其默认事件
+	document.getElementById("submit").onclick = ajaxSubmit;
+	var xhr;  // 全局xhr对象
+
+	// onclick处理程序
+	function ajaxSubmit(e){
+		e.preventDefault(); // 阻止“提交按钮”的默认事件
+		// 手动收集表单数据
+		var formData = "";
+		var oForm = document.getElementById("fruitform");
+		var oInput = document.querySelectorAll("#fruitform input");
+		for(var i=0; i<oInput.length; i++){
+			formData += oInput[i].name + "=" + oInput[i].value + "&";
+		}
+
+		// 创建Ajax
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = handResult;
+		xhr.open("POST",oForm.action);
+		xhr.setRequestHeader("Content-Tyep", "application/x-www-form-urlencoded");
+		xhr.send(formData);
+	}
+
+	// 处理返回的数据结果
+	function handResult(e){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById("result").innerHTML = xhr.responseText;
+		}
+	}
+</script>
+
+<hr>
+
+<!-- Ajax发送文件 -->
+<form action="" id="fileAjax">
+	<input type="file" name="file1">
+	<input type="file" name="file2">
+	<button type="submit" id="subfile">提交文件至服务器</button>
+</form>
+<script>
+	document.getElementById("subfile").onclick = handFile;
+	var xhr1;
+
+	function handFile(e){
+		e.preventDefault();
+
+		var oForm1 = document.getElementById("fileAjax");
+		var formData1 = new FormData(oForm1);
+
+		xhr1 = new XMLHttpRequest();
+		xhr1.onreadystatechange = handRes1;
+		xhr1.open("POST",oForm1.action);
+		xhr1.send(formData1);
+	}
+
+	function handRes1(e){
+		if(xhr1.readyState==4 && xhr1.status=200){
+			console.log(xhr1.responseText);
+		}
+	}
+</script>
+
+<hr>
+
+<!-- 实时监控Ajax上传进度 -->
+<form action="" id="proAjax">
+	<input type="file" name="file3">
+	<button type="submit" id="prosub">提交</button>
+</form>
+<progress id="prog" value="0.5"></progress>
+<script>
+	document.getElementById("prosub").onclick = handPro;
+	var xhr2;
+	var prog = document.getElementById("prog");
+	var oForm2 = document.getElementById("proAjax");
+	function handPro(e){
+		e.preventDefault();
+
+		var formData2 = new FormData(oForm2);
+		xhr2 = new XMLHttpRequest();
+		xhr2.onreadystatechange = handRes2;
+		xhr2.open("POST",oForm2.action);
+		xhr2.send(formData2);
+
+		var upload = xhr2.upload;
+		upload.onprogress = function(e){
+			prog.value = e.loaded;
+			prog.max = e.total;
+		}
+		upload.onload = function(e){
+			prog.value = 1;
+			prog.max = 1;
+		}
+	}
+	function handRes2(e){
+		if(xhr2.readyState==4 && xhr2.status==200){
+			console.log(xhr2.responseText);
+		}
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+
+
+	
+</body>
+</html>

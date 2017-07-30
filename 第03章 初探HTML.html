@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第3章</title>
+</head>
+<body>
+
+<!-- 使用布尔属性的三种方式 -->
+<input type="text" disabled>
+<input type="text" disabled="">
+<input type="text" disabled="disabled">
+<br>
+
+
+<!-- 自定义属性 -->
+<input type="text" data-creater="creater" data-purpose="purpose">
+<br>
+
+
+<!-- 全局属性 accesskey的使用 -->
+<form action="">
+	Name: <input type="text" name="name" accesskey="n">
+	Password: <input type="password" name="password" accesskey="p">
+	<input type="submit" value="登陆" accesskey="s">
+	<!-- 此时，Alt键+s，相当于按下了提交按钮 -->
+</form>
+<br>
+
+
+<!-- 全局属性 class的使用 -->
+<a href="http://www.baidu.com" class="class1 class2">百度</a>
+<p />
+<a href="http://www.mi.com" class="class1 otherclass">小米</a>
+<!-- class 用在CSS中 -->
+<style>
+	.class1 {color: red;text-decoration: none;}
+	.class2 {font-size: 20px;}
+	.otherclass {border: 1px solid #666;}
+</style>
+<!-- class 用在脚本中 -->
+<script>
+	var oA = document.getElementsByClassName("otherclass");
+	for(var i=0;i<oA.length; i++){
+		var x = oA[i];
+		x.style.padding = "5px";
+		x.style.backgroundColor = "#eee";
+	}
+</script>
+
+
+<!-- 全局属性 contenteditable的使用 -->
+<br>
+<p contenteditable>能修改页面上的内容？</p>
+
+
+<!-- 全局属性 contextmenu的使用 -->
+<p contextmenu="supermenu">本段落拥有一个名为 "supermenu" 的上下文菜单。这个菜单会在用户右键单击该段落时出现。</p>
+<menu id="supermenu">
+  <command label="Step 1: Write Tutorial" onclick="doSomething()">
+  <command label="Step 2: Edit Tutorial" onclick="doSomethingElse()">
+</menu>
+
+
+<!-- 全局属性 dir的使用 -->
+<br>
+<p dir="rtl">指定文字方向</p>
+<p dir="ltr">指定文字方向</p>
+
+
+<!-- 全局属性 draggable的使用 -->
+<div draggable="true" style="width: 100px; height: 100px; background-color: red;">拖</div>
+
+
+<!-- 全局属性 hidden的使用 -->
+<br>
+<input type="button" id="btn" value="toggle">
+<table>
+	<tr><th>Name</th><th>City</th></tr>   <!-- th是表头，默认加粗 -->
+	<tr><td>张三丰</td><td>武汉</td></tr>
+	<tr hidden id="toggle"><td>张无忌</td><td>十堰</td></tr>
+	<tr><td>李苏田</td><td>宜昌</td></tr>
+</table>
+<script>
+	var toggle = document.getElementById("toggle");
+	var btn = document.getElementById("btn");
+	btn.onclick = function(){
+		if(toggle.hasAttribute("hidden")){
+			toggle.removeAttribute("hidden");
+		}else{
+			toggle.setAttribute("hidden", "true");
+		}
+	}	
+</script>
+
+
+<!-- border 使用 -->
+<style>
+	.cla {
+		border: thin solid black;   
+	}
+</style>
+
+
+<!-- URL片段标识符 -->
+<br>
+<a href="#id">跳转到指定id处</a><br>
+
+
+<!-- 全局属性 lang的使用 -->
+<p lang="en">Hello world</p>
+<p lang="zh">你好，世界</p>
+
+
+<!-- 全局属性 spellcheck的使用 -->
+<textarea spellcheck="true" id="" cols="30" rows="3">itwwew sio he</textarea><br><br>
+
+
+<!-- 全局属性 tabindex的使用 -->
+<form action="">
+	<label>Name: <input type="text" name="name" tabindex="5"></label><p />
+	<label>City: <input type="text" name="city" tabindex="0"></label><p />
+	<label>Country: <input type="text" name="country" tabindex="2"></label><p />
+	<input type="submit" tabindex="3">
+</form>
+
+
+<!-- 全局属性 title的使用 -->
+<br>
+<a href="http://www.baidu.com" title="链接到百度">百度</a>
+<p title="这一个段落的提示" style="cursor: pointer;">段落，鼠标移入时将有工具提示</p>
+
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

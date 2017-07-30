@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第36章</title>
+</head>
+<body>
+
+<!-- 由直线创建路径 -->
+<canvas id="c1" width="360" height="240">不支持时</canvas>
+<script>
+	var ctx1 = document.getElementById("c1").getContext("2d");
+
+	ctx1.fillStyle = "yellow";
+	ctx1.strokeStyle = "black";
+	ctx1.lineWidth = 5;
+
+	ctx1.beginPath();
+	ctx1.moveTo(10,10);
+	ctx1.lineTo(110,10);
+	ctx1.lineTo(110,120);
+	ctx1.closePath();
+	ctx1.fill();
+	ctx1.stroke();
+
+	ctx1.beginPath();
+	ctx1.moveTo(150,10);
+	ctx1.lineTo(200,10);
+	ctx1.lineTo(200,120);
+	ctx1.lineTo(170,120);
+	ctx1.fill();
+	ctx1.stroke();
+
+	ctx1.beginPath();
+	ctx1.moveTo(250,10);
+	ctx1.lineTo(250,120);
+	ctx1.stroke();
+</script>
+<br><hr><br>
+
+
+<!-- 使用lineGap属性 -->
+<canvas id="c2" width="360" height="240">不支持时</canvas>
+<script>
+	var ctx2 = document.getElementById("c2").getContext("2d");
+	ctx2.strokeStyle = "red";
+	ctx2.lineWidth = 5;
+
+	ctx2.beginPath();
+	ctx2.moveTo(0,50);
+	ctx2.lineTo(200,50);
+	ctx2.stroke();
+
+	ctx2.strokeStyle= "black";
+	ctx2.lineWidth = 40;
+
+	var xpos = 50;
+	var styles = ["butt","round","square"];
+	for(var i=0; i<styles.length; i++){
+		ctx2.beginPath();
+		ctx2.lineGap = styles[i];
+		ctx2.moveTo(xpos,50);
+		ctx2.lineTo(xpos,150);
+		ctx2.stroke();
+		xpos+=50;
+	}
+</script>
+<br><hr><br>
+
+<!-- 用rect方法绘制矩形子路径 -->
+<canvas id="c3" width="360" height="240">不支持</canvas>
+<script>
+	var ctx3 = document.getElementById("c3").getContext("2d");
+
+	ctx3.fillStyle= "yellow";
+	ctx3.strokeStyle = "black";
+	ctx3.lineWidth = 5;
+
+	ctx3.beginPath();
+	ctx3.moveTo(110,10);
+	ctx3.lineTo(110,100);
+	ctx3.lineTo(10,10);
+	ctx3.closePath();
+
+	ctx3.rect(110,10,100,90);
+	ctx3.rect(110,100,130,30);
+
+	ctx3.fill();
+	ctx3.stroke();
+</script>
+<br><hr><br>
+
+
+<!-- 使用分离的子路径 -->
+<canvas id="c4" width="360" height="240">不支持</canvas>
+<script>
+	var ctx4 = document.getElementById("c4").getContext("2d");
+
+	ctx4.fillStyle = "red";
+	ctx4.strokeStyle = "black";
+	ctx4.lineWidth = 5;
+
+	ctx4.beginPath();
+	ctx4.moveTo(110,10);
+	ctx4.lineTo(110,100);
+	ctx4.lineTo(10,10);
+	ctx4.closePath();
+
+	ctx4.rect(120,10,100,90);
+	ctx4.rect(150,110,130,20);
+
+	ctx4.fill();
+	ctx4.stroke();
+</script>
+<br><hr><br>
+
+<!-- 使用arcTo()绘制圆弧 -->
+<canvas id="c5" width="500" height="240">不支持时</canvas>
+<script>
+	var ctx5 = document.getElementById("c5").getContext("2d");
+
+	var point1 = [100,10];
+	var point2 = [200,10];
+	var point3 = [200,110];
+
+	ctx5.fillStyle= "red";
+	ctx5.strokeStyle= "black";
+	ctx5.lineWidth = 4;
+
+	ctx5.beginPath();
+	ctx5.moveTo(point1[0],point1[1]);
+	ctx5.arcTo(point2[0],point2[1],point3[0],point3[1],100);
+	ctx5.stroke();
+
+	drawPoint(point1[0],point1[1]);
+	drawPoint(point2[0],point2[1]);
+	drawPoint(point3[0],point3[1]);
+
+	ctx5.beginPath();
+	ctx5.moveTo(point1[0],point1[1]);
+	ctx5.lineTo(point2[0],point2[1]);
+	ctx5.lineTo(point3[0],point3[1]);
+	ctx5.stroke();
+
+	function drawPoint(x,y){
+		ctx5.lineWidth = 1;
+		ctx5.strokeStyle = "red";
+		ctx5.strokeRect(x-2,y-2,4,4);
+	}
+
+</script>
+<br><hr><br>
+
+
+<!-- canvas响应鼠标事件 -->
+<canvas id="c6" width="500" height="200">不支持</canvas>
+<script>
+	var oC6 = document.getElementById("c6");
+	var ctx6 = oC6.getContext("2d");
+	var p1 = [100,10];
+	var p2 = [200,10];
+	var p3 = [200,110];
+
+	draw6();
+
+	oC6.onmousemove = function(e){
+		if(e.ctrlKey){
+			p1 = [e.clientX, e.clientY];
+		}else if(e.shiftKey){
+			p2 = [e.clientX, e.clientY];
+		}else {
+			p3 = [e.clientX, e.clientY];
+		}
+		ctx6.clearRect(0,0,500,200);
+		draw6();
+	}
+
+	function draw6(){
+		ctx6.fillStyle = "yellow";
+		ctx6.strokeStyle = "black";
+		ctx6.lineWidth = 4;
+
+		ctx6.beginPath();
+		ctx6.moveTo(p1[0],p1[1]);
+		ctx6.arcTo(p2[0],p2[1],p3[0],p3[1],50);
+		ctx6.stroke();
+
+		drawP(p1[0],p1[1]);
+		drawP(p2[0],p2[1]);
+		drawP(p3[0],p3[1]);
+
+		ctx6.beginPath();
+		ctx6.moveTo(p1[0],p1[1]);
+		ctx6.lineTo(p2[0],p2[1]);
+		ctx6.lineTo(p3[0],p3[1]);
+		ctx6.stroke();
+	}
+	function drawP(x,y){
+		ctx6.lineWidth = 1;
+		ctx6.strokeStyle = "red";
+		ctx6.strokeRect(x-2,y-2,4,4);
+	}
+</script>
+<br><hr><br>
+
+<!-- 使用arc方法，绘制圆弧 -->
+<canvas id="c7" width="500" height="200">不支持时</canvas>
+<script>
+	var ctx7 = document.getElementById("c7").getContext("2d");
+	ctx7.fillStyle = "yellow";
+	ctx7.lineWidth = 4;
+
+	ctx7.beginPath();
+	ctx7.arc(70,70,60,0,Math.PI*2,true);
+	ctx7.stroke();
+
+	ctx7.beginPath();
+	ctx7.arc(200,70,60,Math.PI/2,Math.PI,true);
+	ctx7.fill();
+	ctx7.stroke();
+
+	ctx7.beginPath();
+	var val=0;
+	for(var i=0;i<4;i++){
+		ctx7.arc(350,70,60,val,val+Math.PI/4,false);
+		val+=Math.PI/2;
+	}
+	ctx7.closePath();
+	ctx7.fill();
+	ctx7.stroke();
+</script>
+<br><hr><br>
+
+
+<!-- 绘制贝塞尔曲线 -->
+<canvas id="c8" width="500" height="500">不支持</canvas>
+<script>
+	var ctx8 = document.getElementById("c8").getContext("2d");
+	ctx8.strokeStyle = "red";
+	ctx8.beginPath();
+	ctx8.bezierCurveTo(250,50,350,50,400,100);
+	ctx8.stroke();
+
+	ctx8.beginPath();
+	ctx8.quadraticCurveTo(120,350,350,400);
+	ctx8.closePath();
+	ctx8.stroke();
+	ctx8.fill();
+</script>
+<br><hr><br>
+
+<!-- 创建剪切区域 -->
+<canvas id="c9" width="500" width="200" style="border:2px solid yellow;">不支持</canvas>
+<script>
+	var ctx9 = document.getElementById("c9").getContext("2d");
+	ctx9.fillStyle = "red";
+	ctx9.beginPath();
+	ctx9.rect(0,0,500,200);
+	ctx9.fill();
+
+	ctx9.beginPath();
+	ctx9.rect(50,50,300,50);
+	ctx9.clip();
+
+	ctx9.fillStyle = "green";
+	ctx9.beginPath();
+	ctx9.rect(0,0,500,200);
+	ctx9.fill();
+</script>
+<br><hr><br>
+
+<!-- 绘制文本 -->
+<canvas id="c10" width="1000" height="200">不支持时</canvas>
+<script>
+	var ctx10 = document.getElementById("c10").getContext("2d");
+	ctx10.fillStyle = "red";
+	ctx10.strokeStyle = "blue";
+	ctx10.lineWidth = 3;
+	ctx10.font = "100px sans-serif";
+
+	ctx10.shadowOffsetX = 5; // 阴影
+	ctx10.shadowOffsetY = 5;
+	ctx10.shadowBlur = 5;
+	ctx10.shadowColor = "black";
+
+	ctx10.globalAlpha = 0.5; //透明度
+
+	ctx10.fillText("Hello World",50,100);
+	ctx10.strokeText("Hello World",50,100);
+	ctx10.fillRect(50,150,500,20);
+
+</script>
+<br><hr><br>
+
+
+<!-- 使用globalCompositeOperation -->
+<canvas id="c11" width="500" height="300" style="border:1px solid red;">不支持</canvas>
+<label for="">Composition Value:</label>
+<select name="" id="list">
+	<option>copy</option>
+	<option>destination-atop</option>
+	<option>destination-in</option>
+	<option>destination-over</option>
+	<option>destination-out</option>
+	<option>lighter</option>
+	<option>source-atop</option>
+	<option>source-in</option>
+	<option>source-out</option>
+	<option>source-over</option>
+	<option>xor</option>
+</select>
+
+<script>
+	var ctx11 = document.getElementById("c11").getContext("2d");
+	ctx11.fillStyle = "lightgrey";
+	ctx11.strokeStyle = "black";
+	ctx11.lineWidth = 3;
+
+	var comVal = "copy";
+	document.getElementById("list").onchange = function(e){
+		comVal = e.target.value;
+		draw11();
+	}
+	function draw11(){
+		ctx11.clearRect(0,0,500,300);
+		ctx11.globalAlpha = 0.8;
+		ctx11.font = "80px sans-serif";
+		ctx11.fillText("夏海峰",10,100);
+		ctx11.strokeText("夏海峰",10,100);
+
+		ctx11.globalCompositeOperation = comVal;
+		ctx11.fillStyle = "red";
+		ctx11.globalAlpha = 0.5;
+		ctx11.fillRect(100,10,150,100);
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 变换 -->
+<canvas id="c12" width="500" height="300">不支持时</canvas>
+<script>
+	var ctx12 = document.getElementById("c12").getContext("2d");
+	ctx12.fillStyle = "red";
+	ctx12.strokeStyle = "blue";
+	ctx12.lineWidth = 3;
+
+	ctx12.clearRect(0,0,300,150);
+	ctx12.globalAlpha = 1.0;
+	ctx12.font = "100px sans-serif";
+	ctx12.fillText("轩轩",10,100);
+	ctx12.strokeText("轩轩",10,100);
+
+	ctx12.scale(1.3, 1);
+	ctx12.translate(100, -50);
+	ctx12.rotate(0.5);
+
+	ctx12.fillStyle = "green";
+	ctx12.globalAlpha = 0.5;
+	ctx12.fillRect(100,10, 150,100);
+	ctx12.strokeRect(0,0,300,200);
+</script>
+
+
+
+<!-- 本章结束 -->
+
+
+<br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

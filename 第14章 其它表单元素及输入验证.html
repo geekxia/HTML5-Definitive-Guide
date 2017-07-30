@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第14章</title>
+</head>
+<body>
+
+<!-- select标签，用于生成选项列表 -->
+<form>
+	<label for="sports" style="vertical-align: top;">您喜欢体育有哪些？</label>
+	<select name="sports" id="sports" size="4">
+		<option value="篮球" selected label="篮球">篮球</option>
+		<option value="足球">足球</option>
+		<option value="羽毛球">羽毛球</option>
+		<option value="乒乓球">乒乓球</option>
+		<option value="桌球">桌球</option>
+		<option value="游泳">游泳</option>
+		<option value="跑步">跑步</option>		
+	</select>
+</form>
+<br><hr><br>
+
+
+<!-- optgroup标签，用于对option元素进行编组 -->
+<form>
+	<label style="vertical-align: top;">您喜欢体育有哪些？
+		<select name="sports" id="sports" size="6">
+			<optgroup label="第一组">
+				<option value="篮球" selected label="篮球">篮球</option>
+				<option value="足球">足球</option>
+				<option value="羽毛球">羽毛球</option>
+				<option value="乒乓球">乒乓球</option>
+			</optgroup>
+			<optgroup label="第二组">
+				<option value="桌球">桌球</option>
+				<option value="游泳">游泳</option>
+				<option value="跑步">跑步</option>	
+			</optgroup>
+				
+		</select>
+	</label>
+</form>
+<br><hr><br>
+
+<!-- textarea标签：多行文本 -->
+<form>
+	<label for="" style="vertical-align:top;">自我评价：</label>
+	<textarea name="me" id="me" cols="30" rows="10" wrap="hard"></textarea>
+</form>
+<br><hr><br>
+
+
+<!-- output标签的使用：用于承载计算的结果 -->
+<form>
+	<fieldset onsubmit="return false" oninput="res.value=num.valueAsNumber*price.valueAsNumber;">
+		<legend>Price Calculator</legend>
+		<input type="number" placeholder="数量" name="num">
+		<span>X</span>
+		<input type="number" placeholder="单价" name="price">
+		<span>=</span>
+		<output name="res">0</output>
+	</fieldset>
+</form>
+<br><hr><br>
+<!-- 
+onsubmit="return false"  取消提交的默认事件
+oninput 输入时触发的事件
+onchange 值改变是触发的事件
+name.value 用于获取表单的值
+name.valueAsNumber 用于获取表单的值，并将其转化为数值
+-->
+
+
+<!-- required属性，表单验证 -->
+<form>
+	<input type="text" name="name" required>
+	<input type="password" name="password" required>
+	<input type="checkbox" name="accept" required>
+	<button>提交</button>
+</form>
+<br><hr><br>
+
+
+<!-- max/min 控制用户的输入范围 -->
+<form>
+	<input type="number" min="0" max="100" name="price">
+	<button>提交</button>
+</form>
+<br><hr><br>
+
+
+<!-- pattern属性：用于与正则表达式匹配 -->
+<form>
+	<input type="text" pattern="^.* .*$" name="name">
+	<button>提交</button>
+</form>
+<br><hr><br>
+
+
+<!-- 用pattern属性，执行邮箱/url验证 -->
+<form>
+	<input type="email" placeholder="user@mydomin.com" required name="email" pattern=".*@mydomin.com$" id="email">
+	<button>提交</button>
+</form>
+<br><hr><br>
+
+<!-- 禁用输入验证 -->
+<form novalidate>
+	<input type="email" placeholder="user@mydomin.com" required name="email" pattern=".*@mydomin.com$" id="email">
+	<button formnovalidate>提交</button>
+</form>
+
+
+<!-- 本章结束 -->
+
+
+
+<br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第40章</title>
+</head>
+<body>
+
+
+<!-- 定义问题 -->
+<img src="images/banana100.png" alt="1" id="imgs">
+<div id="btns">
+	<button id="banana">banana</button>
+	<button id="apple">apple</button>
+	<button id="cherries">cherries</button>
+</div>
+<script>
+	var btns = document.querySelectorAll("#btns button");
+	var oImg = document.getElementById("imgs");
+	for(var i=0; i<btns.length; i++){
+		btns[i].onclick = function(e){
+			oImg.src = "images/"+e.target.id + "100.png";
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 检测浏览器是否离线 -->
+<p id="res1">您的浏览器处于 <span id="res2"></span>!</p>
+<script>
+	var status;
+	if(window.navigator.onLine){
+		status = "在线状态";
+	}else {
+		status = "离线状态";
+	}
+	document.getElementById("res2").innerHTML = status;
+</script>
+
+<br><hr><br>
+
+
+<!-- 直接使用应用程序缓存 -->
+<div id="box">
+	<img src="images/banana100.png" alt="1" id="target">
+	<div>
+		<button id="ban">banana</button>
+		<button id="app">apple</button>
+		<button id="che">cherries</button>
+	</div>
+	<div>
+		<button id="update">更新缓存</button>
+		<button id="swap">交换缓存</button>
+	</div>
+	<p id="stu">当前缓存的状态是 <span id="status"></span></p>
+</div>
+<table id="eventtable" border="1">
+	<tr><th>事件类型</th></tr>
+</table>
+<script>
+	var oBtn = document.querySelectorAll("#box button");
+	var img1 = document.getElementById("target");
+	for(var i=0;i<oBtn.length;i++){
+		oBtn[i].onclick = handPress;
+	}
+
+	function handPress(e){
+		switch (e.target.id) {
+			case "swap":
+				window.applicationCache.swapCache();
+				break;
+			case "update":
+				window.applicationCache.update();
+				checkStatus();
+				break;
+			default:
+				img1.src = "images/"+e.target.innerHTML + "100.png";
+				break;
+		}
+	}
+
+	// 添加缓存事件
+	window.applicationCache.onchecking = handEvent;
+	window.applicationCache.onnoupdate = handEvent;
+	window.applicationCache.ondownloading = handEvent;
+	window.applicationCache.onupdateready = handEvent;
+	window.applicationCache.oncached = handEvent;
+	window.applicationCache.onobselete = handEvent;
+
+	function handEvent(e){
+		document.getElementById("eventtable").innerHTML += "<tr><td>"+e.type+"</td></tr>";
+		checkStatus();
+	}
+
+	function checkStatus(){
+		var stusName = ["UNCACHE","IDLE","CHECKING","DOWNLOADING","UPDATEREADY","OBSOLETE"];
+		var stus = window.applicationCache.status;
+		document.getElementById("status").innerHTML = stusName[stus];
+	}
+</script>
+
+
+<!-- 本章结束 -->
+	
+</body>
+</html>

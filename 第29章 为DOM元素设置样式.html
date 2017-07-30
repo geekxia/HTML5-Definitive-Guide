@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第29章</title>
+	<style>
+		p{
+			border: 1px solid red;
+			background-color: lightgray;
+		}
+		#block1 {color: white;}
+		table {
+			border: thin solid blue;
+			border-collapse: collapse;
+			margin: 5px;float: left;
+		}
+		td {
+			padding: 5px;
+		}
+	</style>
+	<style media="screen AND (min-width:500px), PRINT" type="text/css">
+		#block2 {
+			color: yellow;
+			font-style: italic;
+		}
+	</style>
+	<link rel="stylesheet" href="#">
+</head>
+<body>
+
+<!-- 获得样式表的基本信息 -->
+<p id="block1">ipewioweioewiowee</p>
+<p id="block2">ioewieoiewewoiewo</p>
+<button id="getStyle">获取样式表的信息</button><br>
+<div id="place"></div>
+
+<script>
+	var sheets = document.styleSheets;
+	console.log(sheets)
+	var box = document.getElementById("place");
+	document.getElementById("getStyle").onclick = function(){
+		for(var i=0; i<sheets.length; i++){
+			var table = document.createElement("table");
+			table.border = "1";
+			addRow(table,"Index",i);
+			addRow(table,"href",sheets[i].href);
+			addRow(table,"title",sheets[i].title);
+			addRow(table,"type",sheets[i].type);
+			addRow(table,"ownerNode",sheets[i].ownerNode.tagName);
+			box.appendChild(table);
+		};		
+	};
+	function addRow(obj,cont1,cont2){
+		var row = document.createElement("tr");
+		row.innerHTML = "<td>"+cont1+"</td><td>"+cont2+"</td>";
+		obj.appendChild(row);
+	}
+</script>
+<hr>
+
+<!-- 使用MediaList对象 -->
+<button id="getMedia">获取MediaList对象相关信息</button>
+<div id="place2"></div>
+<script>
+	var box2 = document.getElementById("place2");
+	var shs = document.styleSheets;
+	document.getElementById("getMedia").onclick = function(){
+		for(var i=0; i<shs.length;i++){
+			if(shs[i].media.length > 0){
+				var tab = document.createElement("table");
+				tab.border = "1";
+				addRow(tab,"媒体的数量",shs[i].media.length);
+				addRow(tab,"媒体文本值",shs[i].media.mediaText);
+				for(var j=0; j<shs[i].media.length; j++){
+					addRow(tab,"第"+j+"条媒体",shs[i].media.item[0]);
+				}
+				box2.appendChild(tab);
+			}
+		}	
+	};
+
+</script>
+<hr>
+
+
+<!-- 禁用或启用样式表 -->
+<button id="toggle">禁用或启用样式表</button>
+<script>
+	var shss = document.styleSheets;
+	document.getElementById("toggle").onclick = function(){
+		for(var i=0; i<shss.length; i++){
+			shss[i].disabled = !shss[i].disabled;
+		}
+	}
+</script>
+<hr><br>
+
+<!-- 进一步使用样式表对象 -->
+<button id="sh1">操作CSSRuleList对象</button>
+<button id="sh2">使用CSSRuleList对象修改样式表中的样式规则</button>
+<div id="place3"></div>
+<script>
+	var box3 = document.getElementById("place3");
+	document.getElementById("sh2").onclick = function(){
+		document.styleSheets[0].cssRules.item(1).selectorText = "#block2";
+		if(box3.hasChildNodes()){
+			for(var i=0; i<box3.childNodes.length; i++){
+				box3.removeChild(box3.childNodes.firstChild);
+			}
+		}
+	}
+	document.getElementById("sh1").onclick = processStyleSheet;
+	function processStyleSheet(){
+		var rules = document.styleSheets[0].cssRules;
+		for(var i=0; i<rules.length; i++){
+			var rule = rules.item(i);
+			var ta = document.createElement("table");
+			ta.border = "1";
+			addRow(ta,"父级样式表",rule.parentStyleSheet.title);
+			addRow(ta,"选择器字符串",rule.selectorText);
+			addRow(ta,"样式内容",rule.cssText);
+			box3.appendChild(ta);
+		}
+	}
+</script>
+<hr>
+
+<!-- 操作元素的行内样式 -->
+<button id="doStyle">更改行内样式</button>
+<button id="doStyle1">展示行内样式</button>
+<div id="msg"></div>
+<script>
+	var msg = document.getElementById("msg");
+	var target = document.getElementById("block1");
+	document.getElementById("doStyle").onclick = function(){
+		target.style.cssText = "font-size:26px; color:red;";
+		disStyle();
+	}
+	document.getElementById("doStyle1").onclick = disStyle;
+	function disStyle(){
+		if(msg.hasChildNodes()){
+			for(var i=0; i<msg.childNodes.length; i++){
+				msg.removeChild(msg.firstChild);
+			}
+		}
+		var text = document.getElementById("block1").style.cssText;
+		msg.innerHTML = text;
+	}
+</script>
+<hr>
+<br><br>
+
+
+
+
+<!-- 使用 CSSStyleDeclaration对象 -->
+<div id="dec1" class="od">oiewoieoweioewoieiowoewioeiowiewoie</div><br>
+<div id="dec2" class="od" style="border:medium dashed red;color: blue;padding: 2px;">嘎哈为湿洗煤厂</div><br>
+<button id="btn">CSSStyleDeclaration操作</button><br>
+<div id="dec"></div>
+<style title="core styles" id="sty">
+	#dec1 {
+		color: white;border: thick solid blue;background-color: gray;
+	}
+	div.od {
+		border: thin solid black;  background-color: lightgray;
+	}
+	table.taa {
+		border: thin solid red; border-collapse: collapse;
+		margin: 5px; float: left;
+	}
+	table.taa td {
+		padding: 5px;
+	}
+</style>
+<script>
+	var box4 = document.getElementById("dec");
+	// 点击事件，更改样式表中的样式对象
+	document.getElementById("btn").onclick = function(){
+		// document.getElementById("sty").cssRules.item(1).style.paddingTop = "10px";
+		// document.getElementById("sty").cssRules.item(1).style.paddingRight = "10px";
+		var obj1 = document.getElementById("dec2").style;
+		var obj2 = document.getElementById("dec1").style;
+		// obj.cssText = "border:1px solid red; color:blue; padding:5px; paddingTop:10px;"
+		displayStyle(obj1);
+		displayStyle(obj2);
+	}
+	function displayStyle(style2){
+		if(box4.hasChildNodes() && box4.childNodes.length >=2){
+			return false;
+		}
+		var tass = document.createElement("table");
+		tass.className = "taa";
+		tass.border = "1";
+		addRow(tass,"border",style2.border);
+		addRow(tass,"color",style2.color);
+		addRow(tass,"padding",style2.padding);
+		addRow(tass,"paddingTop",style2.paddingTop);
+		box4.appendChild(tass);
+	}
+</script>
+<hr>
+
+
+<button id="addSty">为元素添加样式</button>
+<div id="msg2"></div>
+<script>
+	var oD1 = document.getElementById("dec1");
+	var sty = oD1.style;
+	var box5 = document.getElementById("msg2");
+	document.getElementById("addSty").onclick = function(){		
+		sty.setProperty("font-size","40px");
+		sty.setProperty("line-height","3em");
+		sty.setProperty("padding","20px");
+		disPro();
+	}
+	function disPro(){
+		var tb = document.createElement("table");
+		tb.border = "1";
+		addRow(tb,"字号",sty.getPropertyValue("font-size"));
+		addRow(tb,"行高",sty.getPropertyValue("line-height"));
+		addRow(tb,"内边距",sty.getPropertyValue("padding"));
+		box5.appendChild(tb);
+	}
+</script>
+<hr><br>
+
+
+<!-- 以程序的方式探索CSS属性 -->
+<p id="pp" style="color: red;font-size: 40px; border: 1px solid blue;">eiowi0230ie00ii2e02e02020</p>
+<button id="cod">显示元素样式</button>
+<div id="msg3"></div>
+<script>
+	var box6 = document.getElementById("msg3");
+	var sty6 = document.getElementById("pp").style;
+	document.getElementById("cod").onclick = function(){
+		box6.innerHTML = sty6.cssText;
+	}	
+</script>
+
+
+<!-- 获取元素的优先级 -->
+<style>
+	#PP {
+		padding: 30px !important;
+		width: 800px;
+		line-height: 3em;
+	}
+</style>
+<script>
+	var sty7 = document.getElementById("pp").style;
+	var res = sty7.getPropertyPriority("padding");
+	document.writeln(res)
+</script>
+<hr>
+
+
+<!-- 获取更加细粒度的CSS属性值 -->
+<div id="box10" style="width: 500px; height: 200px; background-color: red; color: white; font-size: 3em; text-align: center;line-height: 200px;">盒子</div><br>
+<button id="btn10">获取细粒度的单位值</button><br><br>
+<div id="msg10"></div>
+<script>
+	var sty10 = document.getElementById("box10").style;
+	var len = sty10.length;
+	var msg10 = document.getElementById("msg10");
+	var arr = ["width","height","background-color","color","font-size","text-align","line-height"];
+
+	document.getElementById("btn10").onclick = function(){
+		var table10 = document.createElement("table");
+		table10.border = "1";
+		for(var i=0; i<len; i++){
+			addRow(table10,arr[i],sty10.getPropertyValue(arr[i]));
+		}
+		msg10.appendChild(table10);
+	}
+
+</script>
+
+
+<!-- 计算样式 -->
+<script>
+	var obj1 = document.getElementById("box10");
+	var list = document.defaultView.getComputedStyle(obj1);
+	document.writeln(list.length+"<br />");
+	document.writeln(list.getPropertyValue("margin-top")+"<br />");
+	document.writeln(list.getPropertyValue("color")+"<br />");
+	document.writeln(list.getPropertyValue("height"));
+
+	console.log(document.defaultView.getComputedStyle(document.body).getPropertyValue("width"));
+</script>
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br><br>
+</body>
+</html>

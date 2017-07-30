@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第30章</title>
+	<style>
+		p {
+			padding: 10px;
+			line-height: 2em;
+		}
+	</style>
+</head>
+<body>
+
+
+<!-- 内联事件处理 -->
+<p onmouseover="this.style.background='gray'; this.style.color='white';" onmouseout="this.style.removeProperty('background'); this.style.removeProperty('color');">ipweioweioweiwoei</p>
+
+
+<!-- 事件处理函数 -->
+<p onmouseover="handleOver(this)" onmouseout="handleOut(this)">ioieowoe9230923jofjewoeiwoe</p>
+<script>
+	function handleOver(obj){
+		obj.style.backgroundColor = "gray";
+		obj.style.color = "red";
+	}
+	function handleOut(obj){
+		obj.style.removeProperty("background-color");
+		obj.style.removeProperty("color");
+	}
+</script>
+
+<hr>
+
+<p class="pe">iowoieoweioewiweoweo</p>
+<p class="pe">iowieoewiowieoiowoww</p>
+<script>
+	var pe = document.querySelectorAll(".pe");
+	for(var i=0; i<pe.length; i++){
+		pe[i].onmouseover = handleOver1;
+		pe[i].onmouseout = handleOut1;
+	}
+	function handleOver1(e){
+		e.target.style.backgroundColor="gray";
+		e.target.style.color = "white";
+	}
+	function handleOut1(e){
+		e.target.style.removeProperty("background-color");
+		e.target.style.removeProperty("color");
+	}
+</script>
+<hr>
+
+<!-- addEventListener -->
+<p class="pp">iooweioweowoweoweewo</p>
+<p class="pp">oioweoewoieiwoeoiweo</p>
+<button id="add">添加事件</button>
+<button id="del">移除事件</button>
+<script>
+	var pp = document.querySelectorAll(".pp");
+	document.getElementById("add").onclick = function(){
+		for(var i=0; i<pp.length; i++){
+			pp[i].addEventListener("mouseover",handleOver1);
+			pp[i].addEventListener("mouseout",handleOut1);
+		}
+	};
+	document.getElementById("del").onclick = function(){
+		pp[1].removeEventListener("mouseover", handleOver1);
+	}
+</script>
+<hr>
+
+<!-- 使用Event对象的type属性，实现一个函数来处理多个类型的事件 -->
+<p id="pid">oiwoewoewoiewioewieioe</p>
+<script>
+	var pid = document.getElementById("pid");
+	pid.addEventListener("mouseover",handle);
+	pid.addEventListener("mouseout",handle);
+	function handle(e){
+		switch (e.type) {
+			case "mouseover":
+				e.target.style.backgroundColor = "gray";
+				e.target.style.color = "red";
+				break;
+			case "mouseout":
+				e.target.style.removeProperty("background-color");
+				e.target.style.removeProperty("color");
+				break;
+		}
+	}
+</script>
+<hr>
+
+
+<!-- 事件捕获 -->
+<p id="block2">ipiweoweiowei<span id="sp">ioeweo</span></p>
+<script>
+	var oPP = document.getElementById("block2");
+	var oSP = document.getElementById("sp");
+	oPP.addEventListener("mouseover",handlePP,true);
+	oPP.addEventListener("mouseout",handlePP,true);
+	oSP.addEventListener("mouseover",handleSP);
+	oSP.addEventListener("mouseout",handleSP);
+	function handlePP(e){
+		if(e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE){
+			e.target.style.border = "thin solid red";
+			e.currentTarget.backgroundColor = "gray";
+		}else if (e.type == "mouseout" && e.eventPhase == Event.CAPTURING_PHASE) {
+			e.target.style.removeProperty("border");
+			e.currentTarget.style.removeProperty("background-color");
+		}
+		e.stopPropagation();
+	}
+	function handleSP(e){
+		if(e.type == "mouseover"){
+			e.target.style.backgroundColor = "white";
+			e.target.style.color = "red";
+		}else {
+			e.target.style.removeProperty("background-color");
+			e.target.style.removeProperty("color");
+		}
+	}
+	// oPP.addEventListener("click",clickme,false)
+	// oPP.addEventListener("click",clickhe);
+	// function clickme(e){
+	// 	document.writeln(e.target);
+	// 	document.writeln(e.currentTarget);
+	// }
+	// function clickhe(e){
+	// 	alert(iowe);
+	// }
+</script>
+<hr>
+
+<div id="haha">addeventlistener</div>
+<script>
+	var haha = document.getElementById("haha");
+	// haha.addEventListener("mouseover",haha1);
+	// haha.addEventListener("mouseover",haha2);
+	function haha1(e){
+		alert(1);
+	}
+	function haha2(e){
+		alert(2);
+	}
+</script>
+<hr>
+
+
+<!-- 阻止默认事件 -->
+<div id="stop">
+	<a href="http://www.mi.com">小米</a>
+	<a href="http://www.mi.com">小米</a>
+</div>
+<script>	
+	var oA = document.querySelectorAll("#stop a");
+	for(var i=0; i<oA.length; i++){
+		oA[i].addEventListener("click",clickA);
+	}
+	function clickA(e){
+		var e = e | window.event;
+		var flag = confirm("您是否要阻止a的跳转行为？");
+		if(flag){
+			e.stopPropagation();
+		}
+		alert("我是自定义事件");
+	}
+</script>
+<hr>
+
+
+<!-- 鼠标事件 -->
+<style>
+	td,th {
+		width: 150px;
+	}
+</style>
+<p id="block3">ioiweoweiwoeeiwiewoeiowoeeiewo</p>
+<table border="1">
+	<tr>
+		<th>事件类型</th>
+		<td id="etype"></td>
+	</tr>
+	<tr>
+		<th>X坐标</th>
+		<td id="ex"></td>
+	</tr>
+	<tr>
+		<th>Y坐标</th>
+		<td id="ey"></td>
+	</tr>
+</table>
+<script>
+	var block3 = document.getElementById("block3");
+	var etype = document.getElementById("etype"),
+		ex = document.getElementById("ex"),
+		ey = document.getElementById("ey");
+
+	block3.addEventListener("mouseover",handle5);
+	block3.addEventListener("mousemove",handle5);
+	block3.addEventListener("mouseout",handle5);
+	function handle5(e){
+		switch (e.type) {
+			case "mouseover":
+				block3.style.color = "red";
+				break;
+			case "mousemove":
+				block3.style.fontSize = "20px";
+				break;
+			case "mouseout":
+				block3.removeProperty("color");
+				block3.removeProperty("font-size");
+				etype.innerHTML = "";
+				ex.innerHTML = "";
+				ey.innerHTML = "";
+				break;
+		}
+		if(e.eventPhase == Event.AT_TARGET){
+			etype.innerHTML = e.type+"";
+			ex.innerHTML = e.clientX;
+			ey.innerHTML = e.clientY;
+		}
+
+	}
+</script>
+<hr>
+
+<!-- 焦点事件 -->
+<form action="" class="form1">
+	<p><label for="">Fruit:<input type="text" autofocus name="fave"></label></p>
+	<p><label for="">Name:<input type="text" autofocus name="name"></label></p>
+	<input type="submit" value="提交">
+	<input type="reset" value="重置">
+</form><br>
+<script>
+	var oInput = document.querySelectorAll("form.form1 input");
+	for(var i=0; i<oInput.length; i++){
+		oInput[i].addEventListener("focus",handInput);
+		oInput[i].addEventListener("blur",handInput);
+	}
+	function handInput(e){
+		switch (e.type) {
+			case "focus":
+				e.target.style.backgroundColor = "lightgray";
+				e.target.style.border = "thick solid red";
+				break;
+			case "blur":
+				e.target.style.removeProperty("background-color");
+				e.target.style.removeProperty("border");
+				break;
+		}
+	}
+</script>
+<hr>
+
+
+<!-- 键盘事件 -->
+<form action="" class="form2">
+	<input type="text" name="in1" autofocus><br>
+	<input type="text" name="in2"><br>
+	<input type="submit" value="提交">
+	<input type="reset" value="重置">
+</form>
+<br>
+<span id="msg"></span>
+<script>
+	var oin = document.querySelectorAll(".form2 input");
+	for(var i=0; i<oin.length; i++){
+		oin[i].addEventListener("keyup",handKey);
+	}
+	function handKey(e){
+		document.getElementById("msg").innerHTML +="Key Pressed: "+e.key+"<br />";
+		document.getElementById("msg").innerHTML += "Char: "+String.fromCharCode(e.key)+"<br />";
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br><br><br><br><br>
+</body>
+</html>

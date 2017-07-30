@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第15章</title>
+</head>
+<body>
+
+<!-- img标签的使用 ： 要指定width / height属性 -->
+<img src="images/triathlon.png" alt="img" width="200" height="67"><br><br>
+
+
+<!-- 图像超链接 -->
+<a href="http://www.baidu.com" target="_blank"><img src="images/accept.png" alt="tar" ismap></a>
+<br><br>
+
+
+<!-- map/area标签，创建分区响应图 -->
+<img src="images/triathlon.png" alt="img" usemap="#mymap" width="200" height="67">
+<map name="mymap">
+	<area shape="rect" coords="5,5,68,60" href="http://www.baidu.com" alt="百度" target="_blank">
+	<area shape="rect" coords="70,5,130,62" href="http://www.mi.com" alt="小米" target="_blank">
+	<area shape="default" href="http://www.qq.com" alt="qq" target="_blank">
+</map>
+<br><br>
+
+<!-- 使用iframe标签 -->
+<nav>
+	<ul>
+		<li><a href="http://www.baidu.com" target="myframe1">百度</a></li>
+		<li><a href="http://www.qq.com" target="myframe2">腾讯</a></li>
+	</ul>
+</nav>
+<iframe name="myframe1" width="600" height="320"></iframe>
+<iframe name="myframe2" width="600" height="320"></iframe>
+<br><br>
+
+
+<!-- embed标签，用于嵌入插件 -->
+<embed src="http://sports.qq.com/vo/#/cover/3rlg5gmkn9mzgwl/p00225ga9sm"  width="960" height="500" allowfullscreen="true">
+<br><br>
+
+
+<!-- 使用object标签，用于嵌入插件 -->
+<object data="http://sports.qq.com/vo/#/cover/3rlg5gmkn9mzgwl/p00225ga9sm" width="960" height="500">
+	<param name="allowFullScreen" value="true">
+	<b>对不起！</b>我不无法匹配您需要的插件！
+</object>
+<br><br>
+
+<!-- 使用object标签，嵌入图像 -->
+<object data="images/triathlon.png" type="image/png"></object>
+<br><br>
+
+<!-- 使用object标签，嵌入图像 -->
+<object data="images/triathlon.png" usemap="#mymap"></object>
+<br><br>
+
+<!-- progress进度条 -->
+<progress id="mypro" value="10" max="100"></progress>
+<p>
+	<button type="button" value="30" class="btn">30%</button>
+	<button type="button" value="60" class="btn">60%</button>
+	<button type="button" value="90" class="btn">90%</button>
+</p>
+<script>
+	var btns = document.getElementsByClassName("btn");
+	var pro = document.getElementById("mypro");
+	for(var i=0; i<btns.length; i++){
+		btns[i].onclick = function(e){
+			// var e = e | window.event;
+			pro.value = e.target.value;
+		}
+	}
+</script>
+<br><br>
+
+
+<!-- meter标签的使用 -->
+<meter id="mymeter" value="80" min="10" max="100" low="40" high="85" optimum="60"></meter>
+<p>
+	<button class="btns" value="20">20</button>
+	<button class="btns" value="60">60</button>
+	<button class="btns" value="90">90</button>
+</p>
+<script>
+	var oBtn = document.getElementsByClassName("btns");
+	var oMe = document.getElementById("mymeter");
+	for(var j=0; j<oBtn.length; j++){
+		oBtn[j].onclick = function(e){
+			oMe.value = e.target.value;
+		}
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br>
+</body>
+</html>

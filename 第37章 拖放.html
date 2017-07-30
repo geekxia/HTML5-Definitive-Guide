@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第37章</title>
+	<style>
+		#src > * {float:left;}
+		#target , #src img {
+			border:thin solid black;
+			padding: 2px;
+			margin:4px;
+			width:100px;
+			height: 100px;
+		}
+		#target {
+			height: 100px; width:100px;
+			text-align: center;
+			display: table;
+		}
+		#target p {
+			display: table-cell;
+			vertical-align:middle;
+		}
+		#target img {margin: 1px;}
+		img.dragged {background-color: grey;}
+	</style>
+</head>
+<body>
+
+<!-- 定义可拖拽项目 -->
+<div id="src">
+	<img src="images/banana.png" alt="1" id="banana" draggable="true">
+	<img src="images/apple.png" alt="1" id="apple" draggable="true">
+	<div id="target">
+		<p id="msg">Drop Here.</p>
+	</div>
+</div>
+
+<script>
+	var src = document.getElementById("src");
+	var tar = document.getElementById("target");
+	var msg = document.getElementById("msg");
+
+	var dragID;
+
+	//拖动事件
+	src.ondragstart = function(e){
+		dragID= e.target.id;
+		e.target.classList.add("dragged");
+	}
+	src.ondragend = function(e){
+		var elems = document.querySelectorAll(".dragged");
+		for(var i=0; i<elems.length; i++){
+			elems[i].classList.remove("dragged");
+		}
+	}
+	src.ondrag = function(e){
+		msg.innerHTML = "正在拖放"+e.target.id;
+	}
+
+	//释放区域的事件
+	tar.ondragenter = handDrag;
+	tar.ondragover = handDrag;
+	function handDrag(e){
+		e.preventDefault();
+	}
+	// drop事件
+	tar.ondrop = function(e){
+		var newEle = document.getElementById(dragID).cloneNode(false);
+		tar.innerHTML = "";
+		tar.appendChild(newEle);
+		e.preventDefault();
+	}
+</script>
+<div style="clear: both;"></div>
+<br><hr><br>
+
+
+<!-- 使用DataTransfer对象，传递数据 -->
+<div id="box1" style="width: 150px; height: 150px;">
+	<img src="images/apple.png" alt="1" id="app" width="100" draggable='true'>
+</div>
+<br>
+<div id="zoom" style="width: 150px;height: 150px;border:1px solid red;text-align: center;">
+释放区域
+</div>
+<script>
+	var box1 = document.getElementById("box1");
+	var zoom = document.getElementById("zoom");
+	var cloneId;
+
+	zoom.ondragenter = handle;
+	zoom.ondragover = handle;
+
+	function handle(e){
+		e.preventDefault();
+	}
+
+	box1.ondragstart = function(e){
+		cloneId = e.target.id;
+		e.dataTransfer.setData("Text","夏海峰");
+	}
+	box1.ondragend = function(e){
+		console.log("拖放已结束");
+	}
+	zoom.ondrop = function(e){
+		e.preventDefault();
+		var data = e.dataTransfer.getData("Text");
+		var newEle = document.getElementById(cloneId).cloneNode(false);
+		zoom.innerHTML = "";
+		zoom.appendChild(newEle);
+		console.log(data);
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 拖放文件 -->
+
+<div id="box2">
+	<p id="msgs">Drop Files Here.</p>
+</div>
+<table id="datas" border="1"></table>
+<script>
+	var box2 = document.getElementById("box2");
+	box2.ondragenter = hand1;
+	box2.ondragover = hand1;
+	function hand1(e){
+		e.preventDefault();
+	}
+	box2.ondrop = function(e){
+		var files = e.dataTransfer.files;
+		var tabEle = document.getElementById("datas");
+		tabEle.innerHTML = "<tr><th>Name</th><th>Type</th><th>Size</th></tr>";
+		for(var i=0;i<files.length; i++){
+			var row = "<tr><td>"+files[i].name+"</td><td>"+files[i].type+"</td><td>"+files[i].size+"</td></tr>";
+			tabEle.innerHTML += row;
+		}
+		e.preventDefault();
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 在表单中接受被拖放的文件 -->
+<form action="" id="forms" method="post">
+	<div class="table">
+		<div class="row">
+			<div class="cell label">Banana:</div>
+			<div class="cell"><input type="text" name="banana" value="2"></div>
+		</div>
+		<div class="row">
+			<div class="cell label">Apple:</div>
+			<div class="cell"><input type="text" name="apple" value="5"></div>
+		</div>
+		<div class="row">
+			<div class="cell label">Cherries:</div>
+			<div class="cell"><input type="text" name="cherries" value="20"></div>
+		</div>
+		<div class="row">
+			<div class="cell label">Files:</div>
+			<div class="cell"><input type="text" name="files"></div>
+		</div>
+		<div class="row">
+			<div class="cell label">Total:</div>
+			<div class="cell">0 items</div>
+		</div>
+	</div>
+	<div id="zom"><p id="ms">Drop Here.</p></div>
+	<button type="submit" id="sub">提交表单</button>
+</form>
+<script>
+	// ondrop事件中接受文件
+	// 收集表单数据
+	// Ajax提交数据
+
+
+	var zom = document.getElementById("zom");
+	var oForm = document.getElementById("forms");
+	var oSub = document.getElementById("sub");
+	var xhr;
+
+	zom.ondragenter = hand3;
+	zom.ondragover = hand3;
+	function hand3(e){
+		e.preventDefault();
+	}
+	// 收集表单数据
+	var dataForm = new DataForm(oForm);
+	zom.ondrop = function(e){
+		var fis = e.dataTransfer.files;
+		for(var i=0;i<fis.length; i++){
+			dataForm.append("file"+i, fis[i]);
+		}
+		e.preventDefault();	
+	}
+	// Ajax提交数据
+	oSub.onclick = function(e){
+		e.preventDefault();
+		xhr = new XMLHttpRequest();		
+		xhr.onreadystatechange = handRes;
+		xhr.open("POST",oForm.action);
+		xhr.send(dataForm);
+	}
+	// 处理响应
+	function handRes(e){
+		if(xhr.readyState==4 && xhr.status==200){
+			console.log(xhr.responseText);
+		}
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+
+<br><br><br><br><br><br><br>
+</body>
+</html>

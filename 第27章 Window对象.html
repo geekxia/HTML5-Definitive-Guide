@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第27章</title>
+</head>
+<body>
+
+<!-- 两种方式，获取window对象 -->
+<table id="win" border="1">
+	<tr>
+		<th>OuterWidht:</th>
+		<td id="owidth"></td>
+	</tr>
+	<tr>
+		<th>OuterHeight:</th>
+		<td id="oheight"></td>
+	</tr>
+</table>
+<script>
+	var oW = document.getElementById("owidth"),
+		oH = document.getElementById("oheight");
+	oW.innerHTML = window.outerWidth;
+	oH.innerHTML = document.defaultView.outerHeight;
+</script>
+<br><br>
+
+
+<!-- 获取窗口相关信息 -->
+<table id="win2" border="1">
+	<tr>
+		<th>outerWidth:</th>
+		<td id="ow"></td>
+		<th>outerHeight:</th>
+		<td id="oh"></td>
+	</tr>
+	<tr>
+		<th>innerWidth:</th>
+		<td id="iw"></td>
+		<th>innerHeight:</th>
+		<td id="ih"></td>
+	</tr>
+	<tr>
+		<th>screen.width</th>
+		<td id="sw"></td>
+		<th>screen.height</th>
+		<td id="sh"></td>
+	</tr>
+</table>
+<script>
+	document.getElementById("ow").innerHTML = window.outerWidth;
+	document.getElementById("oh").innerHTML = window.outerHeight;
+	document.getElementById("iw").innerHTML = window.innerWidth;
+	document.getElementById("ih").innerHTML = window.innerHeight;
+	document.getElementById("sw").innerHTML = window.screen.width;
+	document.getElementById("sh").innerHTML = window.screen.height;
+</script>
+<br><br>
+
+
+<!-- 与窗口进行交互 -->
+<div class="axure">
+	<button id="scroll">scroll</button>
+	<button id="print">print</button>
+	<button id="close">close</button>
+</div>
+<p style="width: 800px;margin: 20px;">
+　　First, I want to tell you how proud we are. Getting into Columbia is a real testament of what a great well-rounded student you are. Your academic, artistic, and social skills have truly blossomed in the last few years. Whether it is getting the highest grade in Calculus, completing your elegant fashion design, successfully selling your painted running shoes, or becoming one of the top orators in Model United Nations, you have become a talented and accomplished young woman. You should be as proud of yourself as we are.
+
+首先，我想告诉你我们为你感到特别骄傲。进入哥伦比亚大学证明你是一个全面发展的优秀学生，你的学业、艺术和社交技能最近都有卓越的表现，无论是你在微积分上得了最高分，完成自己典雅的时尚的设计，成功卖出绘制的跑鞋，还是在“模拟联合国”演说中成为表现最突出的人之一，你毫无疑问已经是一个多才多艺的女孩。你的父母为你感到骄傲，你也应该像我们一样为自己感到自豪。 
+
+　　I will always remember the first moment I held you in my arms. I felt a tingling sensation that directly touched my heart. It was an intoxicating feeling I will always have. It must be that "father-daughter connection" which will bind us for life. I will always remember singing you lullaby while I rocked you to sleep. When I put you down, it was always with both relief (she finally fell asleep!) and regret (wishing I could hold you longer). And I will always remember taking you to the playground, and watching you having so much fun. You were so cute and adorable, and that is why everybody loved you so.
+
+我会永远记得第一次将你抱在臂弯的那一刻，一种新鲜激动的感觉瞬间触动了我的心，那是一种永远让我陶醉的感觉，就是那种将我们的一生都联结在一起的“父女情结”。我也常常想起我唱着催眠曲轻摇你入睡，当我把你放下的时候，常常觉得既解脱又惋惜，一方面我想，她终于睡着了！另一方面，我又多么希望自己可以多抱你一会儿。我还记得带你到运动场，看着你玩得那么开心，你是那样可爱，所有人都非常爱你。 
+
+　　You have been a great kid ever since you were born, always quiet, empathetic, attentive, and well-mannered. You were three when we built our house. I remember you quietly followed us every weekend for more than ten hours a day to get building supplies. You put up with that boring period without a fuss, happily ate hamburgers every meal in the car, sang with Barney until you fell asleep. When you went to Sunday Chinese school, you studied hard even though it was no fun for you. I cannot believe how lucky we are as parents to have a daughter like you.
+
+你不但长得可爱，而且是个特别乖巧的孩子。你从不吵闹、为人着想，既听话又有礼貌。当你三岁我们建房子的时候，每个周末十多个小时你都静静地跟着我们去运建筑材料，三餐在车上吃着汉堡，唱着儿歌，唱累了就睡觉，一点都不娇气不抱怨。你去上周日的中文学习班时，尽管一点也不觉得有趣，却依然很努力。我们做父母的能有像你这样的女儿真的感到非常幸运。 
+</p>
+
+<script>
+	var buttons = document.querySelectorAll(".axure button");
+	for(var i=0; i<buttons.length; i++){
+		buttons[i].onclick = function(e){
+			switch (this.id) {
+				case "scroll":
+					window.scrollBy(0,3200);
+					break;
+				case "print":
+					window.print();
+					break;
+				case "close":
+					window.close();
+					break;
+			}
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 四种弹框 -->
+<div id="box">
+	<button id="alert">alert</button>
+	<button id="confirm">confirm</button>
+	<button id="prompt">prompt</button>
+	<button id="modal">Show Modal Dialog</button>
+</div>
+<script>
+	var oBox = document.querySelectorAll("#box button");
+	for(var i=0; i<oBox.length; i++){
+		oBox[i].onclick = handleClick;
+	}
+	function handleClick(e){
+		switch (this.id) {
+			case "alert":
+				window.alert("这是警告框！");
+				break;
+			case "confirm":
+				var con = window.confirm("您确认要下载该软件吗？");
+				alert("用户是否选择的确认？ " +con);
+				break;
+			case "prompt":
+				var str = window.prompt("请输入你名字：")
+				alert("用户输入的字符串是： "+str);
+				break;
+			case "modal":
+				window.showModalDialog("http://www.mi.com");
+				break;
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- history操作 -->
+<div id="his">
+	<button id="back">Back</button>
+	<button id="forw">Forward</button>
+	<button id="go">Go</button>
+</div>
+<script>
+	var bts = document.querySelectorAll("#his button");
+	for(var i=0;i<bts.length;i++){
+		bts[i].onclick = handleHis;
+	}
+	function handleHis(){
+		switch (this.id) {
+			case "back":
+				window.history.back();
+				break;
+			case "forw":
+				window.history.forward();
+				break;
+			case "go":
+				window.history.go(3);
+				break;
+		}
+	}
+</script>
+<br><hr><br>
+
+
+
+<p id="msg"></p>
+<button id="ban" class="btns">Banana</button>
+<button id="app" class="btns">Apple</button>
+<script>
+	var sel = "No selection made."
+	var oPPP = document.getElementById("msg");
+	oPPP.innerHTML = sel;
+	var oBBB = document.querySelectorAll(".btns");
+	for(var i=0; i<oBBB.length; i++){
+		oBBB[i].onclick = function(){
+			oPPP.innerHTML = this.innerHTML;
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 在浏览器历史中，插入条目 -->
+<div id="insert">
+	<p id="msg"></p>
+	<button id="apple">Apple</button>
+	<button id="banana">Banana</button>
+</div>
+<script>
+	var sel = "No selection made.";
+	var oomsg = document.querySelectorAll("#insert #msg");
+	if(window.location.search == "?banana"){
+		sel = "Selection: Banana";
+	}else if (window.location.search == "?apple") {
+		sel = "Selction: Apple";		
+	}
+
+	oomsg[0].innerHTML = sel;
+	var oobt = document.querySelectorAll("#insert button");
+	for(var i=0; i<oobt.length; i++){
+		oobt[i].onclick = function(e){
+			oomsg[0].innerHTML =e.target.innerHTML;
+			window.history.pushState("","","?"+this.id);
+			window.history.pushState("","","otherpage.html?"+this.id);
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 在浏览器历史中保存更为复杂的数据 -->
+<table id="data" border="1">
+	<tr>
+		<th>Name:</th>
+		<td id="name"></td>
+	</tr>
+	<tr>
+		<th>Color:</th>
+		<td id="color"></td>
+	</tr>
+	<tr>
+		<th>Size:</th>
+		<td id="size"></td>
+	</tr>
+	<tr>
+		<th>State:</th>
+		<td id="state"></td>
+	</tr>
+	<tr>
+		<th>Event:</th>
+		<td id="event"></td>
+	</tr>
+</table><br>
+<button id="ba" class="bt">Banana</button>
+<button id="ap" class="bt">Apple</button>
+<script>
+	if(window.history.state){
+		displayState(window.history.state);
+		document.getElementById("state").innerHTML = "Yes";
+	}else{
+		document.getElementById("name").innerHTML = "No Selection";
+	}
+
+	window.onpopstate = function(e){
+		displayState(e.state);
+		document.getElementById("event").innerHTML = "Yes";
+	}
+
+	var bb = document.querySelectorAll(".bt");
+	for(var i=0;i<bb.length;i++){
+		bb[i].onclick = function(e){
+			var stateObj;
+			if(e.target.id == "ba"){
+				stateObj = {
+					name:"banana",
+					color:"yellow",
+					size:"large"
+				}
+			}else {
+				stateObj = {
+					name:"apple",
+					color:"red",
+					size:"medium"
+				}
+			}
+			window.history.pushState(stateObj,"");
+			displayState(stateObj);
+		};
+	}
+	function displayState(obj){
+		document.getElementById("name").innerHTML = obj.name;
+		document.getElementById("color").innerHTML = obj.color;
+		document.getElementById("size").innerHTML = obj.size;
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 替换浏览器历史条目 -->
+
+<div id="rep">
+	<p id="ms"></p>
+	<button id="baa">Banana</button>
+	<button id="apl">Apple</button>
+</div>
+<script>
+	var sel = "no selection."
+	if(window.location.search == "Banana"){
+		sel = "Sel: Banana";
+	}else if (window.location.search == "Apple") {
+		sel = "Sel: Apple";		
+	}
+	document.getElementById("ms").innerHTML = sel;
+	var bs = document.querySelectorAll("#rep button");
+	for(var i=0; i<bs.length;i++){
+		bs[i].onclick = function(e){			
+			document.getElementById("ms").innerHTML = this.innerHTML;
+			window.history.replaceState("","","?"+this.id);
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 跨文档消息传递 -->
+<script>
+	window.addEventListener("message", handleMessage, false);
+	function handleMessage(e){
+		if(e.origin == "http://titan"){
+			displayMessage(e.data);
+		}else {
+			displayMessage("No Message");
+		}
+	}
+	function displayMessage(){
+		document.getElementById("banana").innerHTML = msg;
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 计时器 -->
+<div id="time">
+	<p id="timemsg"></p>
+	<button id="settime">SetTime</button>
+	<button id="setinterval">SetInterval</button>
+	<button id="cleartime">ClearTime</button>
+	<button id="clearinterval">ClearInterval</button>
+</div>
+<script>
+	var tts = document.querySelectorAll("#time button");
+	for(var i=0; i<tts.length; i++){
+		tts[i].onclick = handleTime;
+	}
+
+	var timeId;
+	var intervalId;
+	var count = 0;
+	function handleTime(e){
+		if(e.target.id == "settime"){
+			timeId = window.setTimeout(function(){
+				disMsg("Timeout Expired.");
+			},3000);
+			disMsg("time out");
+		}else if (e.target.id == "cleartime") {
+			window.clearTimeout(timeId);
+			disMsg("time out cleared.");			
+		}else if (e.target.id == "setinterval") {
+			intervalId = window.setInterval(function(){
+				disMsg("Interval expired. Counter: "+count++);
+			},1000);
+			disMsg("interval");			
+		}else if (e.target.id == "clearinterval") {
+			window.clearInterval(intervalId);
+			disMsg("interval cleared");
+		}
+	}
+	function disMsg(msg){
+		document.getElementById("timemsg").innerHTML = msg;
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+
+</body>
+</html>

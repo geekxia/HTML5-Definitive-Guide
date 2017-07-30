@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第05章</title>
+</head>
+<body>
+	
+<!-- script标签，一般都要放在内容的后面 -->
+<script>
+	 function myFunc(name,weather){
+	 	document.writeln("Hello "+name +".");
+	 	document.writeln("It is "+weather+ " today.");
+	 };
+	 myFunc("Eva","sunney");
+	
+</script>
+
+
+<!-- 全局变量、局部变量 -->
+<script>
+	var global = "apples";
+</script>
+<script>
+	document.writeln("<br>"+"全局变量 "+global);
+</script>
+
+
+<!-- js数据类型 -->
+<script>
+	// 字符串类型
+	var str = "string";
+	var str1 = 'string';
+
+	// 数值类型
+	var num = 7;
+	var num1 = 3.14;
+	var num2 = 0xffff;  // 16进制
+
+	// 布尔类型
+	var bol = true;
+	bar bol1 = false;
+</script>
+<br>
+
+<!-- 有多种方法创建 js对象 -->
+<script>
+	// 使用 new Object() 创建对象
+	var myObj = new Object();
+	myObj.name = "Eva";
+	myObj.weather = "sunny";
+	document.writeln("Hello "+myObj.name+". It is "+myObj.weather+" today.");
+
+	// 使用“对象字面量”创建对象
+	var myObj1 = {
+		name:"Ape",
+		weather:"sunny",
+		printMsg:function(){
+			// this 代表当前对象
+			document.writeln("<br>"+"Hello "+this.name+". It is "+this.weather+" today.");
+		}
+	}
+	myObj1.printMsg();	
+</script>
+
+
+<!-- 读取和修改对象的属性 -->
+<script>
+	myObj1.name = "Ape02";
+	myObj1["weather"] = "raining";
+	myObj1.printMsg();
+
+	var propName = "weather";
+	myObj1[propName] = "sunny";		// propName是一个变量
+</script>
+<hr>
+
+<!-- 枚举对象的属性 -->
+<script>
+	for(var prop in myObj1){
+		document.writeln("<br>"+"属性名: "+prop+". 属性值: "+myObj1[prop]);
+	}
+</script>
+<hr>
+
+<!-- 增加或删除对象的属性 -->
+<script>
+	// 增加属性
+	myObj.dayOfWeek = "Monday";
+	myObj.sayHello = function(){
+		document.writeln("Hello "+this.dayOfWeek);
+	}
+	myObj.sayHello();
+
+	// 删除属性
+	delete myObj.name;
+	delete myObj["weather"];
+	delete myObj1[propName];
+</script>
+<hr>
+
+
+<!-- 使用 in 判断对象是否具有某个属性 -->
+<script>
+	var myData = {
+		name:"Lucy",
+		age: 24,
+		say:function(){
+			alert("Hello");
+		}
+	}
+	var hasAge = "age" in myData;
+	var hasTel = "tel" in myData;
+	document.writeln("hasAge: "+hasAge+"<br>"+"hasTel: "+hasTel);
+</script>
+<hr>
+
+<!-- 相等测试、等同测试 -->
+<script>
+	var first = 5;
+	var second = "5";
+	// 相等测试
+	if(first == second){
+		document.writeln("相等测试，比较它们的值是否相等，有隐式类型转换！");
+	}else{
+		document.writeln("哈哈");
+	}
+	// 等同测试
+	if(first === second){
+		document.writeln("哈哈");
+	}else {
+		document.writeln("等同测试，比较它们的值和类型是否都相等，没有类型转换！");
+	}
+</script>
+<hr>
+
+<!-- 对象的 相等测试、等同测试 -->
+<script>
+	// 对象的比较，是引用的比较
+	var data1 = {
+		name:"Lucy",
+		age:24
+	}
+	var data2 = {
+		name:"Lucy",
+		age:24
+	}
+	var data3 = data2;
+	document.writeln(data1 == data2); 	// false
+	document.writeln(data2 == data3);	// true
+	document.writeln(data1 === data2);	// false
+	document.writeln(data2 === data3);	// true
+</script>
+<hr>
+
+<!-- 基本类型的 相等测试、等同测试 -->
+<script>
+	// 基本类型的比较，是值的比较
+	var a = 5;
+	var b = "5";
+	var c = b;
+	document.writeln(a == b);	// true
+	document.writeln(b == c);	// true
+	document.writeln(a === b);	// false
+	document.writeln(b === c);	// true
+</script>
+<hr>
+
+
+<!-- Number.toString()   String()  把数字转为字符串 -->
+<script>
+	document.writeln((50).toString() + String(50));
+</script>
+<hr>
+
+<!-- Number()  parseInt()  parseFloat()  把字符串转化为数值 -->
+<script>
+	document.writeln(Number("1234")+"<br>");
+	document.writeln(Number("124sdoiweo")+"<br>"); 	// NaN
+	document.writeln(parseInt("1234heisa")+"<br>");
+	document.writeln(parseFloat("1.3a12a34aieie")+"<br>");
+</script>
+<hr>
+
+<!-- 创建js数组 -->
+<script>
+	// 使用 new Array() 创建数组
+	var myArray = new Array();
+	myArray[0] = 100;
+	myArray[1] = "Ape";
+	myArray[9] = true;  // 布尔值
+
+	// 使用 数组字面量 创建数组
+	var myArray1 = [100,"Ape",undefined,true];
+</script>
+
+<!-- 读取和修改数组内容 -->
+<script>
+	document.writeln(myArray1[0]);
+	myArray[3] = false;
+	document.writeln(myArray[3]);
+</script>
+<hr>
+
+<!-- 枚举js数组 -->
+<script>
+	for(var i=0; i<myArray.length; i++){
+		document.writeln(myArray[i]);
+	}
+</script>
+<hr>
+
+<!-- try...catch(e)...finally 和 异常对象Error -->
+<script>
+	try{
+		var arr;
+		for(var i=0; i<arr.length; i++){
+			console.log(arr[i]);
+		}
+	}catch(e){
+		document.writeln("异常对象："+e);
+	}finally{
+		document.writeln(" 无论是否发生异常，我都会被执行。");
+	}
+</script>
+<hr>
+
+<!-- 检查变量或属性是否为undefined 或 null -->
+<script>
+	var obj = {
+		name:"eva",
+		age:25,
+		width:null
+	}
+	document.writeln(obj.height);
+	document.writeln(obj.width);
+	if(!obj.name){  // 隐式类型转换
+		document.writeln("name is null or undefined.");
+	}else{
+		document.writeln("name 存在");
+	}
+
+	if(!obj.height){
+		document.writeln("height is null or undefined.");
+	}else{
+		document.writeln("height 存在");
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第32章</title>
+</head>
+<body>
+	
+<!-- Ajax起步 -->
+<div id="btns">
+	<button>Apples</button>
+	<button>Cherries</button>
+	<button>Bananas</button>
+</div>
+<div id="target">
+	Press a button.
+</div>
+<script>
+	var btns = document.querySelectorAll("#btns button");
+	bar omsg = document.getElementById("target");
+	var httpRequest;
+	for(var i=0; i<btns.length; i++){
+		btns[i].addEventListener("click", handleBtn);
+	}
+	function handleBtn(e){
+		httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = handleStateChange;
+		httpRequest.open("GET",e.target.innerHTML+".html");
+		httpRequest.send();
+	}
+	function handleStateChange(e){
+		// if(e.target.readyState == XMLHttpRequest.DONE && e.target.status == 200){
+		// 	omsg.innerHTML = e.target.responseText;
+		// }
+
+		// 适配Opera浏览器的写法如下：
+		if(httpRequest.readyState == 4 && httpRequest.status == 200){
+			omsg.innerHTML = httpRequest.responseText;
+		}
+
+	}
+</script>
+<hr>
+
+
+<!-- 使用Ajax事件 -->
+<div id="req">
+	<button>Apple</button>
+	<button>Orange</button>
+	<button>Banana</button>
+</div>
+<table id="dis" border="1">
+	<tr>
+		<th>Event</th>
+		<th>lenghtComputable</th>
+		<th>loaded</th>
+		<th>total</th>
+	</tr>
+</table>
+<div id="msg"></div>
+<script>
+	var oBtn = document.querySelectorAll("#req button");
+	var oDis = document.getElementById("dis");
+	var oMsg = document.getElementById("msg");
+	var xhr;
+
+	// 为按钮绑定Ajax请求
+	for(var i=0; i<oBtn.length; i++){
+		oBtn[i].onclick = handleReq;
+	}
+	// 请求函数
+	function handleReq(e){
+		clearTable();
+		xhr = new XMLHttpRequest();
+		// 绑定Ajax事件
+		xhr.onreadystatechange = handleChange;
+		xhr.onerror = handleError;
+		xhr.onload = handleLoad;
+		xhr.onloadend = handleLoadEnd;
+		xhr.onloadstart = handleLoadStart;
+		xhr.onprogress = handleProgress;		
+		xhr.open("GET",e.target.innerHTML+".html");
+		xhr.send();
+	}
+	// Ajax事件处理程序
+	function handleChange(e){
+		if(xhr.readyState==4 && xhr.status==200){
+			oMsg.innerHTML = xhr.responseText;
+		}
+		displayAjax("onreadystatechange",e);
+	}
+	function handleError(e){
+		displayAjax("onerror",e);
+	}
+	function handleLoad(e){
+		displayAjax("onerror",e);
+	}
+	function handleLoadEnd(e){
+		displayAjax("onerror",e);
+	}
+	function handleLoadStart(e){
+		displayAjax("onerror",e);
+	}
+	function handleProgress(e){
+		displayAjax("onerror",e);
+	}
+
+
+	// 把Ajax事件的信息放在表格中
+	function displayAjax(eventName,e){
+		if(e){
+			oDis.innerHTML += "<tr><td>"+eventName+"</td><td>"+e.lenghtComputable+"</td><td>"
+			+e.loaded+"</td><td>"+e.total+"</td></tr>";
+		}else {
+			oDis.innerHTML += "<tr><td>"+eventName+"</td><td>没有</td><td>没有</td><td>没有</td></tr>";
+		}
+		
+	}
+	function clearTable(){
+		oDis.innerHTML = "<tr><th>Event</th><th>lenghtComputable</th><th>loaded</th><th>total</th></tr>";
+	}
+</script>
+<hr>
+
+
+<!-- Ajax请求的错误处理 -->
+<div id="doer">
+	<button>Apples</button>
+	<button>Banana</button>
+	<button>Orange</button>
+	<button>Cucumb</button>
+	<br>
+	<button id="badhost">Bad Host</button>
+	<button id="badurl">Bad URL</button>
+</div>
+<div id="tar">
+	Press a Button.
+</div>
+<div id="errormsg"></div>
+<div id="statusmsg"></div>
+<script>
+	var btnss = document.querySelectorAll("#doer button");
+	var tar = document.getElementById("tar");
+	var statusmsg = document.getElementById("statusmsg");
+	var errormsg = document.getElementById("errormsg");
+	var httpReq;
+	for(var i=0; i<btnss.length; i++){
+		btnss[i].onclick = handle;
+	}
+	// 点击事件处理程序
+	function handle(e){
+		clearmsg();
+		httpReq = new XMLHttpRequest();
+		httpReq.onreadystatechange = handleR;
+		httpReq.onerror = handleE;
+		try {
+			switch (e.target.id) {
+				case "badhost":
+					httpReq.open("GET","http://nodomain.com/aa.html");
+					break;
+				case "badurl":
+					httpReq.open("GET","http://");
+					break;
+				default:
+					httpReq.open("GET",e.target.innerHTML+".html");
+					break;
+			}
+			httpReq.send();
+		} catch(e) {
+			disErrorMsg("try/catch",e.message);
+		}
+	}
+
+	// Ajax事件处理程序
+	function handleR(e){
+		if(httpReq.readyState==4){
+			if(httpReq.status == 200){
+				tar.innerHTML = httpReq.responseText;
+			}else {
+				statusmsg.innerHTML = "Status: "+httpReq.status + " "+httpReq.statusText;
+			}
+		}
+	}
+	// Ajax事件之error处理程序
+	function handleE(e){
+		disErrorMsg("Event Error",httpReq.status+":"+httpReq.statusText);
+	}
+
+	// 在div中显示错误捕获信息
+	function disErrorMsg(src,msg){
+		errormsg.innerHTML = src + ": "+ msg;
+	}
+
+	// 清空信息台
+	function clearmsg(){
+		errormsg.innerHTML = "";
+		statusmsg.innerHTML = "";
+	}
+</script>
+<hr>
+
+
+<!-- 中止Ajax请求 -->
+<div id="stops">
+	<button>Apple</button>
+	<button>Banan</button><br>
+	<button id="stopAjax">Stop Ajax</button>
+</div>
+<div id="stopmsg"></div>
+<script>
+	var buttons = document.querySelectorAll("#stops button");
+	var msgdiv = document.getElementById("stopmsg");
+	var xhr1;
+	for(var i=0; i<buttons.length;i++){
+		buttons[i].onclick = handStop;
+	}
+	// 点击事件处理程序
+	function handStop(e){
+		if(e.target.id == "stopAjax"){
+			xhr1.abort();
+		}else {
+			xhr1 = new XMLHttpRequest();
+			xhr1.onreadystatechange = handResult;
+			xhr1.onabort = disMsgs;
+			xhr1.open("GET",e.target.innerHTML+".html");
+			xhr1.send();
+		}
+	}
+	// 请求完成的事件处理程序
+	function handResult(e){
+		if(xhr1.readyState == 4 && xhr1.status == 200){
+			msgdiv.innerHTML = xhr1.responseText;
+		}
+	}
+	// 中止事件处理程序
+	function disMsgs(e){
+		msgdiv.innerHTML = "Ajax请求，已经中止";
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+
+</body>
+</html>

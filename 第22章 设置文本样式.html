@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第22章</title>
+</head>
+<body>
+
+<!-- 对齐文本 -->
+<p id="ps">有些花草爱热闹，纷纷杂杂的生出许多小生命，我想这便是上天对爱花之人的垂青，也是对每一株生命的赏赐吧，很多人说要分枝，怕影响母体生长，可我却喜欢她们紧紧抱在一起，有种相亲相爱的感觉，可以在一起听听大人的唠叨，或者可以听听孩子们的嬉笑吵闹，感觉这一盆花就是亲密的一家人，温暖馨甜，她们根连着根，手牵着手，快乐的一起长大，一起变老，为何要分开呢？</p>
+<p id="btns">
+	<button class="btns">start</button>
+	<button class="btns">end</button>
+	<button class="btns">left</button>
+	<button class="btns">right</button>
+	<button class="btns">justify</button>
+	<button class="btns">center</button>
+</p>
+<style>
+	#ps {
+		width: 500px;
+		margin: 50px auto;
+		padding: 10px;
+		border: medium solid red;
+		background-color: lightgray;
+	}
+	#btns {
+		width: 500px;
+		margin: 0 auto;
+	}
+	#btns button {font-size: 16px;padding: 5px;margin-left: 10px;}
+</style>
+<script>
+	var btns = document.querySelectorAll(".btns");
+	var oP = document.getElementById("ps");
+	for(var i=0; i<btns.length; i++){
+		btns[i].onclick = function(e){
+			oP.style.textAlign = e.target.innerHTML;
+		}
+	}
+</script>
+<hr><br>
+
+
+<!-- whitespace 处理文本中的空白 -->
+<p id="white">人心静了，眼神	柔了，指尖便多了	些梦的  色彩，染蓝了天，染绿了地，染红了阳光下
+每一个笑脸，一盆盆生命而已，却给人无限思维，同样是活着，可是活着 的境界差的太远，同 样是一个过程，可这过程远没有一 株花活 的随性。
+所以喜欢养花，善待	每一株生命，同时也对自己的人生交一份完整的答卷，纷纷扬	扬的尘世，只有她们安静的世界里没有喧哗，风里雨里，她们顾自在尘		埃里开着	最美的花。</p>
+<style>
+	#white {
+		border: thin solid red;
+		padding: 10px;
+		background-color: lightgray;
+		white-space:pre;
+	}
+</style>
+<hr><br>
+
+<!-- 指定文本方向 -->
+<p class="lf">如此，一株花，一杯茶，一个爱养花的灵魂.</p>
+<p class="rt">在尘世间给了我演绎生命最好的回答.</p>
+<style>
+	.lf {
+		direction: ltr;
+	}
+	.rt {
+		direction: rtl;
+	}
+</style>
+<hr><br>
+
+
+<!-- 字母间距、词间距、行距 -->
+<p class="space">Your people understand your love but can not feel it. You moved too quickly, it brought not only prosperity, growth and confidence but also puzzles, pains, tears and worries. All your people need are to live respectfully, easily, and happily. Their feeling will tell them what is wrong or right.</p>
+<style>
+	.space {
+		border: medium double red;
+		padding: 10px;
+		background-color: lightgray;
+		letter-spacing: 2px;
+		word-spacing:10px;
+		line-height:30px;
+	}
+</style>
+
+
+<!-- 断词方式 -->
+<style>
+	.space {
+		word-wrap:normal;
+	}
+</style>
+
+<!-- 首行缩进 -->
+<style>
+	.space {
+		text-indent:4em;
+	}
+</style>
+<hr><br>
+
+<!-- 文本装饰、大小写转换 -->
+<p id="deco">ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.ipwWIOW oiWioWJOj  WIO iodai E eioe Diodaoi.</p>
+<style>
+	#deco {
+		border: medium solid red;
+		background-color: lightgray;
+		text-decoration: line-through;
+		text-transform: uppercase;  
+		line-height: 3em;
+	}
+</style>
+<hr>
+<br>
+
+
+<!-- 创建文本阴影 -->
+ <div id="shadow">
+ 	<h3>So slow down your foot, please.</h3>
+ 	<p>Don’t let the number get you lost, don’t let last achievements cover your eyes, don’t let surface phonomenon make your dizzy, don’t let others applause influence your judgement. You should look around your history, your should ask your people, you should question yourself.</p>
+ </div>
+ <style>
+ 	#shadow h3 {
+ 		text-shadow:0.2em 0.1em 2px red;
+ 	}
+ 	#shadow p {
+ 		text-shadow:5px 5px 20px blue;
+ 	}
+ </style>
+ <hr>
+ <br>
+
+
+ <!-- 指定字体列表 -->
+ <p class="fon">Your people understand your love but can not feel it. You moved too quickly, it brought not only prosperity, growth and confidence but also puzzles, pains, tears and worries. All your people need are to live respectfully, easily, and happily. Their feeling will tell them what is wrong or right.</p>
+ <style>
+ 	.fon {
+ 		padding: 5px;
+ 		border: medium solid red;
+ 		background-color: lightblue;
+ 		margin: 2px;
+ 		/*float: left;*/
+ 		font-family: "HelveticaNeue Condensed",sans-serif;
+ 		font-size: larger;
+ 		font-weight: bold;	/*字体粗细*/
+ 		font-style: italic;	/*字体样式*/
+ 	}
+ </style>
+ <br>
+ <hr>
+ <br>
+
+ <!-- 使用Web字体 -->
+ <p class="webfont">Miracles were created one by one in china in last 30 years. Politicians are pleased,experts are amused, businessmen are excited , the world is shocked.</p>
+ <style>
+ 	@font-face {
+ 		font-family: "MyFont";  /*自定义字体名称*/
+ 		font-style: normal;
+ 		font-weight: normal;
+ 		src:url("images/MyFont.woff");
+ 	}
+ 	.webfont {
+ 		font-family: 'MyFont';
+ 		padding: 10px;
+ 		border: medium solid red;
+ 		margin: 2px;
+ 		font-size: medium;
+ 	}
+ </style>
+
+
+<!-- 本章结束 -->
+
+
+<br><br><br><br><br>
+</body>
+</html>

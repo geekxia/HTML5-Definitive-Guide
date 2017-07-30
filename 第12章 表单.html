@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第12章</title>
+	<style>
+		hr {border:0.5px solid red; border-bottom: none;}
+	</style>
+</head>
+<body>
+
+
+<!-- form标签、及其相关属性的使用 -->
+<form action="http://titan:8080/form" method="post" enctype="multipart/form-data">
+	<input type="text">
+	<button>提交</button>
+</form>
+<hr>
+
+
+<!-- 表单的自动完成功能： autocomplete属性 -->
+<form autocomplete="off">
+	<input type="text" autocomplete="on">
+	<input type="text" autocomplete="on">
+</form>
+<hr>
+
+<!-- 指定服务器反馈信息的显示位置: target属性 -->
+<form target="_blank">
+	<input type="text">
+	<button>提交</button>
+</form>
+<hr>
+
+<!-- form标签的name属性，用于DOM -->
+<!-- input标签的name属性，用于提交数据至服务器 -->
+<form name="fruit">
+	<input type="text" name="age">
+	<input type="text" name="address">
+</form>
+<hr>
+
+<!-- label标签，为input标签添加文字说明 -->
+<form>
+	<label for="age">请输入年龄：<input type="text" id="age"></label>
+	<label for="grade">请输入班级：</label> <input type="text" id="grade">
+</form>
+<hr>
+
+
+<!-- autofocus属性，为input标签添加自动的聚集光标 -->
+<form>
+	<input type="text">
+	<input type="text" autofocus="true">
+	<input type="text">
+</form>
+<hr>
+
+
+<!-- input标签的disabled属性，用于禁用表单 -->
+<form>
+	<input type="text" disabled>
+	<input type="text">
+</form>
+<br>
+<hr>
+<br>
+
+
+<!-- fieldset标签，对表单进行编组 -->
+<form>
+	<fieldset>
+		<p><label for="">姓名：<input type="text"></label></p>
+		<p><label for="">年龄：<input type="text"></label></p>
+		<p><label for="">学校：<input type="text"></label></p>
+		<button>提交</button>
+	</fieldset><br>
+	<fieldset>
+		<p><label for="">你喜欢的运动是：<input type="text" name="eee"></label></p>
+		<p><label for="">你喜欢的水果是：<input type="text" name="fff"></label></p>
+		<button>提交</button>
+	</fieldset>
+</form>
+<br>
+<hr>
+<br>
+
+<!-- legend标签，为fieldset编组添加相关说明 -->
+<form>
+	<fieldset>
+		<legend>请如下注册</legend>
+		<label for="i">用户名：</label><input type="text" name="a" id="i"><br>
+		<label for="f">密码：</label><input type="text" name="b" id="f"><br>
+		<label for="g">重复密码：</label><input type="text" name="c" id="g"><br>
+		<button>提交</button>
+	</fieldset>
+</form>
+<br>
+<hr>
+<br>
+
+
+<!-- 一次性禁用fieldset编组中的所有表单 -->
+<form>
+	<fieldset disabled>
+		<label for="i">用户名：</label><input type="text" name="aa" id="ii"><br>
+		<label for="f">密码：</label><input type="text" name="bb" id="ff"><br>
+		<label for="g">重复密码：</label><input type="text" name="cc" id="gg"><br>
+	</fieldset>
+</form>
+
+
+<!-- type=submit的 button标签：用于提交表单 -->
+<form>
+	<button type="submit" formaction="http://titan:8080/form" formmethod="post">提交数据</button>
+</form>
+<br>
+<hr>
+
+<!-- type=reset 的 button标签：用于重置表单 -->
+<form>
+	<input type="text" name="x"><br>
+	<input type="text" name="y"><br>
+	<button>提交</button>
+	<button type="reset">重置</button>
+</form>
+<hr>
+<br>
+
+
+<!-- type=button 的 button标签：此时它仅仅是一个按钮 -->
+<form>
+	<button type="button">按钮</button>
+</form>
+<hr>
+<br>
+
+
+<!-- 表单元素的 form属性：用于与非祖先级的form标签进行挂勾 -->
+<form id="haha"></form>
+<input type="text" name="xx" form="haha">
+<input type="text" name="yy" form="haha">
+<br>
+<button type="submit" form="haha">提交</button>
+<button type="reset" form="haha">重置</button>
+
+
+<!-- 本章结束 -->
+
+</body>
+</html>

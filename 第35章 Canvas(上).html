@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第35章</title>
+	<style>
+		canvas {
+			border:medium solid red;
+		}
+	</style>
+</head>
+<body>
+
+<canvas width="500" height="200" id="can1">
+	你的浏览不支持canvas，请升级浏览器。
+</canvas>
+<script>
+	var ctx = document.getElementById("can1").getContext("2d");
+	ctx.fillRect(10,10,50,50);
+</script>
+
+
+<br><br><br>
+
+<!-- 绘制矩形 -->
+<canvas id="can2" width="500" height="200">不支持</canvas>
+<script>
+	var ctx2 = document.getElementById("can2").getContext("2d");
+	var offset = 10;
+	var size = 50;
+	var count = 5;
+	draw2();
+
+	function draw2(){
+		for(var i=0; i<count; i++){
+			ctx2.fillRect(i*(offset+size)+offset, offset, size, size);
+			ctx2.strokeRect(i*(offset+size)+offset, (2*offset)+size, size,size);
+		}
+	}
+</script>
+
+<!-- 擦除矩形区域 -->
+<script>
+	clear1();
+	function clear1(){
+		for(var i=0; i<5; i++){
+			ctx2.clearRect(i*60+10, 15, 50, 40);
+		}
+	}
+</script>
+
+<br><br><br>
+
+<!-- 绘制的线宽 -->
+<canvas id="can3" width="500" height="200">
+	不支持！
+</canvas>
+<script>
+	var ctx3 = document.getElementById("can3").getContext("2d");
+
+	ctx3.lineWidth = 2;
+	ctx3.strokeRect(10,10,50,50);
+
+	ctx3.lineWidth = 4;
+	ctx3.strokeRect(70,10,50,50);
+
+	ctx3.lineWidth = 10;
+	ctx3.strokeRect(130,10,50,50);
+	ctx3.strokeRect(200,10,50,50);
+</script>
+<br><br><br>
+
+
+<!-- 设置线条的连接样式 -->
+<canvas id="can4" width="500" height="200">不支持</canvas>
+<script>
+	var ctx4 = document.getElementById("can4").getContext("2d");
+	ctx4.lineWidth = 30;
+
+	ctx4.lineJoin = "round";
+	ctx4.strokeRect(20,20,100,100);
+
+	ctx4.lineJoin = "bevel";
+	ctx4.strokeRect(160,20,100,100);
+
+	ctx4.lineJoin = "miter";
+	ctx4.strokeRect(300,20,100,100);
+</script>
+<hr>
+<br>
+
+<!-- 设置填充色、笔触色 -->
+<canvas id="can5" width="500" height="200">不支持时</canvas>
+<script>
+	var ctx5 = document.getElementById("can5").getContext("2d");
+	var color1 = ["black","grey","lightgray","red","blue"];
+	var color2 = ["rgb(0,0,0)","rgb(100,100,100)","rgb(200,200,200)","rgb(255,0,0)","rgb(0,0,255)"];
+	draw5();
+	function draw5(){
+		for(var i=0; i<5; i++){
+			ctx5.fillStyle = color1[i];
+			ctx5.fillRect(10+i*60,10,50,50);
+			ctx5.strokeStyle = color2[i];
+			ctx5.strokeRect(10+i*60,70,50,50);
+		}
+	}
+</script>
+<hr>
+<br>
+
+<!-- 渐变色填充 -->
+<canvas id="can6" width="500" height="200">不支持</canvas>
+<script>
+	var ctx6 = document.getElementById("can6").getContext("2d");
+
+	// 创建渐变色
+	var grad1 = ctx6.createLinearGradient(0,0,500,200);
+	grad1.addColorStop(0,"red");
+	grad1.addColorStop(0.5,"rgb(233,233,233)");
+	grad1.addColorStop(1,"blue");
+
+	ctx6.fillStyle = grad1;
+	ctx6.fillRect(0,0,500,200);
+</script>
+<hr><br>
+
+<!-- 渐变色区域和图形区域的大小不一致时 -->
+<canvas id="can7" width="500" height="200">不支持</canvas>
+<script>
+	var cxt7 = document.getElementById("can7").getContext("2d");
+	var grad2 = cxt7.createLinearGradient(10,10,60,60);
+	grad2.addColorStop(0,"red");
+	grad2.addColorStop(0.5,"rgb(233,233,233)");
+	grad2.addColorStop(1,"blue");
+	cxt7.fillStyle = grad2;
+	cxt7.fillRect(10,10,150,150);
+</script>
+<hr><br>
+
+<!-- 径向渐变 -->
+<canvas id="can8" width="500" height="200">不支持</canvas>
+<script>
+	var ctx8 = document.getElementById("can8").getContext("2d");
+	var grad3 = ctx8.createRadialGradient(250,70,20,200,60,100);
+	grad3.addColorStop(0,"red");
+	grad3.addColorStop(0.5,"white");
+	grad3.addColorStop(1,"blue");
+
+	ctx8.fillStyle = grad3;
+	ctx8.fillRect(0,0,500,200);
+</script>
+<hr>
+<br>
+
+<!-- 径向渐变色区域和图形区域不一致时 -->
+<canvas id="can9" width="500" height="200">不支持</canvas>
+<script>
+	var ctx9 = document.getElementById("can9").getContext("2d");
+	var grad4 = ctx9.createRadialGradient(250,70,20,200,60,100);
+	grad4.addColorStop(0,"red");
+	grad4.addColorStop(0.5,"white");
+	grad4.addColorStop(1,"blue");
+
+	ctx9.fillStyle = grad4;
+	ctx9.fillRect(150,20,75,50);
+
+	ctx9.strokeStyle = grad4;
+	ctx9.lineWidth = 10;
+	ctx9.strokeRect(250,20,75,50);
+</script>
+<hr>
+<br>
+
+<!-- 图案填充 -->
+ <canvas id="can10" width="500" height="200">不支持</canvas>
+ <img src="images/banana.png" alt="" hidden  id="imgsrc">
+ <script>
+ 	var ctx10 = document.getElementById("can10").getContext("2d");
+ 	// var oImg = new Image();
+ 	// oImg.src = "images/banana.png";
+ 	// oImg.style.display = "none"; // 让图片不显示
+ 	var oImg = document.getElementById("imgsrc");
+ 	var pattern = ctx10.createPattern(oImg,"repeat");
+
+ 	ctx10.fillStyle = pattern;
+ 	ctx10.fillRect(20,20,100,100);
+ </script>
+<hr>
+<br>
+
+
+<!-- 保存和恢复绘制状态 -->
+<canvas id="can11" width="500" height="200">不支持</canvas>
+<button class="btns">保存</button>
+<button class="btns">恢复</button>
+<script>
+	var ctx11 = document.getElementById("can11").getContext("2d");
+
+	// 创建一个渐变色
+	var grad11 = ctx11.createLinearGradient(500,0,500,200);
+	grad11.addColorStop(0,"red");
+	grad11.addColorStop(0.5,'white');
+	grad11.addColorStop(1,"blue");
+
+	var colors = ['black',grad11,'yellow','red','green','grey'];
+
+	var cIndex = 0;
+	var btns = document.querySelectorAll(".btns");
+
+	// 初始状态
+	ctx11.fillStyle = colors[cIndex];
+	draw11();
+
+	for(var i=0; i<btns.length;i++){
+		btns[i].onclick = handlePress;
+	}
+
+	function handlePress(e){
+		switch (e.target.innerHTML) {
+			case "保存":
+				ctx11.save();
+				cIndex = (cIndex+1) % colors.length;
+				ctx11.fillStyle = colors[cIndex];
+				draw11();
+				break;
+			case "恢复":
+				cIndex = Math.max(0,cIndex-1);
+				ctx11.restore();
+				draw11();
+				break;
+		}
+	}
+
+	function draw11(){
+		ctx11.fillRect(0,0,500,200);
+	}
+
+</script>
+<hr>
+<br>
+
+<!-- 绘制图像 -->
+
+<canvas id="can12" width="500" height="200">不支持时</canvas>
+<img src="images/banana.png" alt="" hidden id="img12" width="50">
+<script>
+	var ctx12 = document.getElementById("can12").getContext("2d");
+	var oImg12 = document.getElementById("img12");
+	ctx12.drawImage(oImg12,0,0);
+	ctx12.drawImage(oImg12,120,10,100,120);
+	ctx12.drawImage(oImg12,20,20,100,50,250,10,100,120);
+</script>
+<hr><br>
+
+<!-- 绘制视频图像 -->
+<video src="images/timessquare.webm" id="vid" controls preload width="360" height="240">
+	不支持视频，请更新浏览器！
+</video>
+<button id="draw13">绘制视频图像</button>
+<canvas id="can13" width="360" height="240">不支持时</canvas>
+<script>
+	var ctx13 = document.getElementById("can13").getContext("2d");
+	document.getElementById("draw13").onclick = handVideo;
+	function handVideo(e){
+		var oV = document.getElementById("vid");
+		ctx13.drawImage(oV,0,0,360,240);
+	}
+</script>
+<hr><br>
+
+
+<!-- 用canvas播放视频 -->
+<canvas id="can14" width="360" height="240">不支持</canvas>
+<button id="draw14">播放视频</button>
+<script>
+	var oVideo = document.getElementById("vid");
+	var ctx14 = document.getElementById("can14").getContext("2d");
+	document.getElementById("draw14").onclick = playVideo;
+	var flag = true;
+	var w = 100; 
+	var h = 10;
+	ctx14.lineWidth = 5;
+	ctx14.strokeStyle = "red";
+	var timer1,timer2;
+	function playVideo(e){
+		clearInterval(timer1);
+		clearInterval(timer2);
+		if(flag){
+			oVideo.play();
+			flag = false;
+			timer2 = setInterval(function(){
+				ctx14.drawImage(oVideo,0,0,360,240);
+				ctx14.strokeRect(180-(w/2), 120-(h/2), w, h);
+			}, 50);	
+			timer2 = setInterval(function(){
+				w = (w+1) % 200;
+				h = (h+3) % 200;
+			},25);
+		}else {
+			oVideo.pause();
+			clearInterval(timer2);
+			flag = true;
+		}
+			
+	}
+</script>
+
+<!-- 绘制canvas图像 -->
+<button id="draw15">绘制canvas</button>
+<canvas id="can15" width="360" height="240">不支持时</canvas>
+<script>
+	var oCan = document.getElementById("can14");
+	var ctx15 = document.getElementById("can15").getContext("2d");
+	document.getElementById("draw15").onclick = drawCanvas;
+	function drawCanvas(e){
+		setInterval(function(){
+			ctx15.drawImage(oCan,30,20,300,200);
+		},50);
+		
+	}
+</script>
+
+
+<!-- 本章结束 -->
+	
+</body>
+</html>

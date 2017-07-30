@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第26章</title>
+	<style>
+		body,html {font-size: 18px; font-family: sans-serif;}
+	</style>
+</head>
+<body>
+
+<!-- 使用 Document对象 -->
+<p id="pid1" class="pid">‘Family’, in my opinion, could also be understood as ‘female and male interdependently live yearly’. ‘F’ means ‘female’ , ‘A’ is for ‘and’, ‘M’ symbolizes ‘male’, ‘L’ stands for ‘interdependently’, ‘L’ is the short form of ‘live’, and ‘y’ could be known as ‘yearly’.</p>
+<p id="pid2" class="pid">The six letters of the word ‘family’ are just like the six surfaces of a cube. Without a single side, a cube would not exist while without a single member, a family would not last.</p>
+<script>
+	document.writeln("<pre>URL:"+document.URL);
+	var oP = document.querySelectorAll("p.pid");
+	for(var i=0; i<oP.length; i++){
+		document.writeln("Element P ID:"+oP[i].id);
+		oP[i].style.border = "medium double red";
+		oP[i].style.padding = "10px";
+	}
+	document.write("</pre>");
+</script>
+
+
+<!-- 使用Document对象，获取当前文档的信息 -->
+<script>
+	document.writeln("<pre>");
+	document.writeln("characterSet:"+document.characterSet);
+	document.writeln("charset:"+document.charset);
+	document.writeln("compatMode:"+document.compatMode);
+	document.writeln("defaultCharset:"+document.defaultCharset);
+	document.writeln("dir:"+document.dir);
+	document.writeln("domain:"+document.domain);
+	document.writeln("lastModified:"+document.lastModified);
+	document.writeln("referrer:"+document.referrer);
+	document.writeln("title:"+document.title);
+	document.write("</pre>");
+</script>
+
+<!-- location对象，获取文档URL信息 -->
+<script>
+	document.writeln("<pre>");
+	document.writeln(document.location.protocol);
+	document.writeln(document.location.host);
+	document.writeln(document.location.hostname);
+	document.writeln(document.location.port);
+	document.writeln(document.location.pathname);
+	document.writeln(document.location.search);
+	document.writeln(document.location.hash);
+	document.write("</pre>");
+</script>
+
+<!-- location导航 -->
+<button id="btn">Press Me</button>
+<p>Actually, there are some codes hiding in the word I think. ‘F’ shows ‘frankness’, ‘A’ can expresses ‘allowance’, ‘M’ delivers ‘mildness’, ‘I’ implies ‘independence’, ‘l’ signifies ‘loyalty’, and ‘y’ points to ‘yearning’. Frankness is a basis to each member in the family, and it is an attitude to your other ‘half’; allowance is a foundation, which shows trust to your family; mildness is a requirement, carrying your respect to your spouse. Interdependence is necessity, and it includes another one’s significance in your heart; loyalty is centrality that contains responsibility to your lover; yearning is a pillar, your love to your family.</p>
+<img src="images/banana.png" alt="ban" width="200" id="banana">
+<script>
+	document.getElementById("btn").onclick = function(){
+		document.location.hash = "banana";
+	}
+</script>
+
+<!-- assign方法 -->
+<button id="pressme">Press Me</button>
+<script>
+	var btn = document.getElementById("pressme");
+	btn.onclick = function(){
+		// document.location.assign("http://www.mi.com");
+		document.location.replace("http://www.mi.com");
+	}
+</script>
+<br><br>
+
+<!-- 使用 cookie -->
+<p id="readcookie"></p>
+<button id="create">Create Cookie</button>
+<button id="update">Update Cookie</button>
+<script>
+	var content = document.getElementById("readcookie");
+	var create = document.getElementById("create");
+	var update = document.getElementById("update");
+	var cookieCount = 0;
+	create.onclick = function(){
+		cookieCount++;
+		// document.cookie = "Cookie_"+cookieCount+"=Value_"+cookieCount;
+		document.cookie = "name=value";
+		readCookie();
+	}
+	update.onclick = function(){
+		document.cookie = "Cookie_"+cookieCount+"=Updated_"+cookieCount;
+		readCookie();
+	}
+
+	readCookie();
+
+	function readCookie(){
+		content.innerHTML = document.cookie;
+	}
+	
+	
+</script>
+<br><hr><br>
+
+
+<!-- document的就绪状态 -->
+<button id="presssate">press me</button>
+<pre id="state"></pre>
+<script>
+	document.onreadystatechange = function(){
+		if(document.readyState == "interactive"){
+			document.getElementById("presssate").onclick = function(){
+				document.getElementById("state").innerHTML = "Button Pressed";
+			}
+		}
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 获取浏览器的DOM实现情况 -->
+<script>
+	var features = ["Core", "HTML", "CSS", "Selectors-API"];
+	var levels = ["1.0", "2.0", "3.0"];
+	document.writeln("<pre>");
+	for(var i=0; i<features.length; i++){
+		document.writeln("Checking for feature: "+features[i]);
+		for(var j=0; j<levels.length; j++){
+			document.writeln(features[i]+" Level "+levels[j]+": ");
+			document.writeln(document.implementation.hasFeature(features[i],levels[j]));
+		}
+	}
+	document.write("</pre");
+</script>
+<br><hr><br>
+
+
+<!-- 使用Document对象的系列属性，来获取文档中的元素对象 -->
+<img src="images/lemon.png" alt="lemon" id="lemon" width="150">
+<p>Frankness is a basis to each member in the family, and it is an attitude to your other ‘half’; allowance is a foundation, which shows trust to your family; mildness is a requirement, carrying your respect to your spouse.</p>
+<img src="images/apple.png" alt="apple" id="apple" width="150">
+<p>Frankness is a basis to each member in the family, and it is an attitude to your other ‘half’; allowance is a foundation, which shows trust to your family; mildness is a requirement, carrying your respect to your spouse.</p>
+<img src="images/banana.png" alt="banana" id="banana" width="150"><br>
+<pre id="des"></pre>
+<script>
+	var result = document.getElementById("des");
+	var oImg = document.images;
+	for(var i=0;i<oImg.length;i++){
+		result.innerHTML += "Image Element: "+oImg[i].id + "\n";
+	}
+	var aImg = oImg.namedItem("apple");
+	result.innerHTML += "Src for apple element is: "+aImg.src + "\n";
+</script>
+<br><hr><br>
+
+<!-- 使用数组标记，来获取已命名元素 -->
+<img src="images/lemon.png" alt="lemon" id="lemon1" width="150" name="image">
+<p>Frankness is a basis to each member in the family, and it is an attitude to your other ‘half’; allowance is a foundation, which shows trust to your family; mildness is a requirement, carrying your respect to your spouse.</p>
+<img src="images/apple.png" alt="apple" id="apple1" width="150" name="image">
+<p>Frankness is a basis to each member in the family, and it is an attitude to your other ‘half’; allowance is a foundation, which shows trust to your family; mildness is a requirement, carrying your respect to your spouse.</p>
+<img src="images/banana.png" alt="banana" id="banana1" width="150"><br>
+<pre id="desc"></pre>
+<script>
+	var desc = document.getElementById("desc");
+	// var ele = document["image"];
+	var ele = document.apple1;
+	if(ele.namedItem){
+		for(var i=0;i<ele.length;i++){
+			desc.innerHTML += "Images Element: "+ele[i].id + "\n";
+		}
+	}else{
+		desc.innerHTML += "Src for element is: "+ele.src + "\n";
+	}
+</script>
+
+
+<!-- 使用Document对象的相关方法，来获取元素 -->
+<pre id="selec"></pre>
+<script>
+	var selec = document.getElementById("selec");
+	var oPPP = document.getElementsByTagName("p");
+	var oImgs = document.getElementsByName("image");
+	var oC = document.getElementsByClassName("little");
+	selec.innerHTML += oPPP.length + "\n";
+	selec.innerHTML += oImgs.length +"\n";
+	selec.innerHTML += oC.length + "\n";
+</script>
+
+
+<!-- 使用CSS选择器来匹配文档中的元素对象 -->
+<script>
+	var objs = document.querySelectorAll("p, img#apple, pre,a");
+	document.writeln("CSS选择器，选中了 "+objs.length +" 个元素");
+</script>
+
+
+<!-- 链式搜索元素对象 -->
+<p id="tb">3299iopweiwpoei <span id="sp1">apple</span>ipwiewpeiwpe92u28jiwpjrwpr <span id="sp2">banana</span>880uwue98w0uew8euwuew <span id="sp3">lemon</span>ipwejidjpj92u83238 jowe.</p>
+<pre id="haha"></pre>
+<script>
+	var oPre = document.getElementById("haha");
+	var oSpan1 = document.getElementById("tb").getElementsByTagName("span");
+	var oSpan2 = document.getElementById("tb").querySelectorAll("span");
+	var oSpan3 = document.querySelectorAll("#tb>span");
+	oPre.innerHTML += oSpan1.length + "\n";
+	oPre.innerHTML += oSpan2.length + "\n";
+	oPre.innerHTML += oSpan3.length + "\n";
+</script>
+<br><hr><br>
+
+
+<!-- 在DOM树中导航，选取元素 -->
+<div>
+	<p>i99902390293</p>
+	<a href="#">kkwkw</a>
+	<p>ipi23i23</p>
+	<div>
+		<p>ipoeioi</p>
+		<span>ipweiewo</span>
+	</div>
+	<p>oi2o3i2o</p>
+	<span>oioweio2342</span>
+</div><br>
+<pre id="opre"></pre><br>
+<div class="btns">
+	<button id="parent">Parent</button>
+	<button id="child">First Child</button>
+	<button id="prev">Prev Sibling</button>
+	<button id="next">Next Sibling</button>
+</div>
+<script>
+	var oPr = document.getElementById("opre");
+	var elems = document.body;
+	var oBtns = document.querySelectorAll(".btns button");
+	for(var i=0; i<oBtns.length; i++){
+		oBtns[i].onclick = handleBtnClick;
+	}
+	function handleBtnClick(e){
+		oPr.innerHTML = "";
+		if(elems.style){
+			elems.style.backgroundColor = "white";
+		}
+		if(e.target.id == "parent" && elems != document.body){
+			elems = elems.parent;
+		}else if (e.target.id=="child" && elems.hasChildNodes()) {
+			elems = elems.firstChild;
+		}else if (e.target.id=="prev" && elems.previousSibling()) {
+			elems = elems.previousSibling;
+		}else if (e.target.id=="next" && elems.nextSibling()) {
+			elems = elems.nextSibling;
+		}
+		processNewElement(elems);
+		if(elems.style){
+			elems.style.backgroudColor = "lightgray";
+		}
+		function processNewElement(){
+			oPr.innerHTML += "元素类型："+elems + "\n";
+			oPr.innerHTML += "id值："+elems.id + "\n";
+			oPr.innerHTML += "是否有子元素："+elems.hasChildNodes() +"\n";
+			if(elems.previousSibling){
+				oPr.innerHTML += "前一个兄弟元素是："+elems.previousSibling+"\n";
+			}else{
+				oPr.innerHTML += "没有上一个兄弟元素";
+			}
+			if(elems.nextSibling){
+				oPr.innerHTML += "下一个兄弟元素是："+elems.nextSibling+"\n";
+			}else {
+				oPr.innerHTML += "没有下一个兄弟元素";
+			}
+		}
+	}
+</script>
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
+</body>
+</html>

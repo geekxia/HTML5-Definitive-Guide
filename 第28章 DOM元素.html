@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第28章</title>
+</head>
+<body>
+
+<!-- 使用HTMLElement对象的一些属性 -->
+
+<p id="textblock" dir="ltr" lang="en-US">
+	这是一个段落！！！
+	<span id="banana">banana.</span>这是一个段落！！！
+	<span id="apple">apple.</span>这是一个段落！！！
+	<span id="orange">orange.</span>
+	这是一个段落！！！
+</p>
+<pre id="res"></pre>
+<script>
+	var res = document.getElementById("res");
+	var oP = document.getElementById("textblock");
+
+	res.innerHTML += "tag: "+oP.tagName +"<br>";
+	res.innerHTML += "id: "+oP.id +"<br>";
+	res.innerHTML += "dir: "+oP.dir +"<br>";
+	res.innerHTML += "lang: "+oP.lang +"<br>";
+	res.innerHTML += "hidden: "+oP.hidden +"<br>";
+	res.innerHTML += "disabled: "+oP.disabled +"<br>";
+</script>
+
+<!-- 使用className属性 -->
+<style>
+	#p {
+		border: medium solid red;
+	}
+	.newClass {
+		background-color: grey;
+		color: white;
+	}
+	.haha {
+		font-size: 20px;
+		font-weight: bold;
+		padding: 10px;
+	}
+</style>
+<button id="addClass">Add Class</button>
+<script>
+	var addClass = document.getElementById("addClass");
+	addClass.onclick = function(){
+		oP.className += " newClass";
+	}
+</script>
+<br><hr><br>
+
+<!-- 使用classList属性 -->
+<pre id="classList"></pre><br>
+<button id="toggle">Toggle</button>
+<button id="add">Add Class</button>
+<script>
+	var oList = document.getElementById("classList");
+	document.getElementById("toggle").onclick = toggleClass;
+	document.getElementById("add").onclick = add;
+	disClass();
+
+	function toggleClass(){
+		oP.classList.toggle("newClass");
+		disClass();
+	}
+	function disClass(){
+		oList.innerHTML = "Current class: ";
+		var list = oP.classList;
+		for(var i=0;i<list.length;i++){
+			oList.innerHTML += list[i]+" ";
+		}
+	}
+	function add(){
+		oP.classList.add("haha");
+		disClass();
+	}
+</script>
+
+<!-- DOM对象的属性操作 -->
+<p id="attrDo">这又是一个段落！！这又是一个段落！！这又是一个段落！！这又是一个段落！！</p>
+<pre id="msgDo"></pre>
+<script>
+	var msg = document.getElementById("msgDo");
+	var op1 = document.getElementById("attrDo");
+	msg.innerHTML = "元素是否有lang属性： "+op1.hasAttribute("lang")+"<br>";
+	msg.innerHTML += "为元素添加lang属性： "+"<br>";
+	op1.setAttribute("lang","en-US");
+	msg.innerHTML += "元素的lang属性值是： "+op1.getAttribute("lang") + "<br>";
+</script>
+
+
+<br><hr><br>
+
+<!-- 操作元素的自定义属性 -->
+<p id="datas" data-app="haha" data-web="hehe" data-and="kuku">自定义属性ipioioiowe自定义属性ipioioiowe自定义属性</p>
+<script>
+	var od = document.getElementById("datas");
+	console.log(od.dataset);
+	
+	for(var attr in od.dataset){
+		document.writeln(attr+": "+od.dataset[attr]+"<br>");
+	}
+</script>
+<hr>
+<script>
+	od.attributes["app"] = "apple";
+	for(var attr in od.attributes){
+		document.writeln(attr+": "+od.attributes[attr]+"<br />");
+	}
+	console.log(od.attributes)
+</script>
+<hr>
+<br>
+
+
+<!-- 文本对象 -->
+<p id="text">文本对象  文本  对象。</p>
+<button id="replace">Replace</button>
+<script>
+	var oText = document.getElementById("text");
+	console.log(oText.firstChild.length);
+	document.getElementById("replace").onclick = function(){
+		oText.firstChild.data = "没了";
+	}
+
+</script>
+
+<!-- DOM创建和删除元素 -->
+<table border="1">
+	<thead>
+		<th>Name</th>
+		<th>Color</th>
+	</thead>
+	<tbody id="fruit">
+		<tr>
+			<td>banana</td>
+			<td>yellow</td>
+		</tr>
+		<tr>
+			<td>apple</td>
+			<td>red</td>
+		</tr>
+	</tbody>
+</table>
+<button id="addFruit">Add</button>
+<button id="removeFruit">Remove</button>
+<style>
+	table{border: solid thin red;border-collapse: collapse;margin: 10px;}
+	td {padding: 4px 5px;}
+</style>
+<script>
+	document.getElementById("addFruit").onclick = function(){
+		var row = document.createElement("tr");
+		row.className = "row";
+		row.appendChild(document.createElement("td")).appendChild(document.createTextNode("Plum"));
+		row.appendChild(document.createElement("td")).appendChild(document.createTextNode("purple"));
+		document.getElementById("fruit").appendChild(row);
+	}
+	document.getElementById("removeFruit").onclick = function(){
+		var childs = document.querySelectorAll(".row");
+		for(var i=0; i<childs.length; i++){
+			childs[i].parentNode.removeChild(childs[i]);
+		}
+	}
+</script>
+<hr>
+
+<!-- 克隆节点 -->
+<button id="clone">clone</button>
+<table border="1">
+	<thead>
+		<th>乘</th>
+		<th>结果</th>
+	</thead>
+	<tbody id="cheng">
+		<tr>
+			<td>1*2</td>
+			<td>2</td>
+		</tr>
+	</tbody>	
+</table>
+<script>
+	var count = 3;
+	document.getElementById("clone").onclick = function(){		
+		var newEl = document.getElementById("cheng").children[0].cloneNode(true);
+		newEl.children[0].firstChild.data=count+1+"*"+count;
+		newEl.children[1].firstChild.data=(count+1)*count;
+		document.getElementById("cheng").appendChild(newEl);
+		count++;
+	}
+</script>
+<hr>
+
+<!-- 移动元素 -->
+<button id="move">Move</button>
+<table border="1" id="dos">
+	<tr>
+		<td>名字</td>
+		<td>颜色</td>
+	</tr>
+	<tr id="app">
+		<td>apple</td>
+		<td>red</td>
+	</tr>
+	<tr id="ban">
+		<td>banana</td>
+		<td>yellow</td>
+	</tr>
+</table>
+<table id="do" border="1">
+	<tr>
+		<td>名字</td>
+		<td>颜色</td>
+	</tr>
+	<tr>
+		<td>plum</td>
+		<td>purple</td>
+	</tr>
+</table>
+<style>
+	td,th{width: 50px; text-align: center;}
+</style>
+<script>
+	var flag=true;
+	document.getElementById("move").onclick = function(){
+		if(flag){
+			document.getElementById("do").appendChild(document.getElementById("app"));
+			document.getElementById("do").appendChild(document.getElementById("ban"));
+			flag = false;
+		}else {
+			document.getElementById("dos").appendChild(document.getElementById("app"));
+			document.getElementById("dos").appendChild(document.getElementById("ban"));
+			flag = true;
+		}
+		
+	}
+</script>
+<hr>
+
+<!-- 对象的比较 -->
+<div id="box">
+	<p>00329212</p>
+	<p id="pid">iooweiow</p>
+	<p>00929id0</p>
+	<p class="hehe" title="11">1204204</p>
+	<p class="hehe" title="11">1204204</p>	
+</div>
+<pre id="ms"></pre>
+<pre id="mss"></pre>
+<script>
+	var oP1 = document.getElementById("pid");
+	var oP2 = document.getElementById("box").children[1];
+	if(oP1.isSameNode(oP2)){
+		document.getElementById("ms").innerHTML = "这两个元素是相同的！";
+	}else {
+		document.getElementById("ms").innerHTML = "这两个元素不相同！";
+	}
+</script>
+<script>
+	var oPs = document.querySelectorAll("p.hehe");
+	if(oPs[0].isEqualNode(oPs[1])){
+		document.getElementById("mss").innerHTML += "它们相等！"+"<br />";
+	}else {
+		document.getElementById("mss").innerHTML += "它们不相等！"+"<br />";
+	}
+	if(oPs[0].isSameNode(oPs[1])){
+		document.getElementById("mss").innerHTML += "它们是同一对象"+"<br />";
+	}else {
+		document.getElementById("mss").innerHTML += "它们是不同的对象"+"<br />";
+	}
+</script>
+<hr>
+
+
+<!-- innerHTML / outerHTML -->
+<div id="box2">
+	<ul id="uls">
+		<li>oiwoei</li>
+		<li>oiw<span>ioweo</span>oei</li>
+		<li>oiwoei</li>
+		<li id="lis">oi<span>ioweo</span>woei</li>
+		<li>oiwoei</li>		
+	</ul>	
+</div>
+<button id="in">inner</button>
+<button id="out">outer</button><br>
+<textarea name="text1" id="text1" cols="100" rows="10"></textarea>
+<script>
+	var uls = document.getElementById("uls");
+	document.getElementById("in").onclick = function(){
+		document.getElementById("text1").innerHTML = uls.innerHTML;
+	}
+	document.getElementById("out").onclick = function(){
+		document.getElementById("text1").innerHTML = uls.outerHTML;
+	}
+</script>
+<hr>
+
+
+<div id="uls2">
+	<ul>
+		<li id="bb">列表列表</li>
+		<li>列表列表</li>
+		<li>列表列表</li>
+		<li id="aa">列表列表</li>
+	</ul>
+</div>
+
+<button id="move11">Move</button>
+<script>
+	var lis = document.getElementById("lis");
+	var tar = document.getElementById("uls2").children[0].children[3];
+	document.getElementById("move11").onclick = function(){
+		tar.innerHTML = lis.innerHTML;
+		document.getElementById("uls2").children[0].children[0].outerHTML = "<p><a href='http://www.baidu.com'"
+		+"target='_blank'>百度</a></p>";
+	}
+</script>
+<hr>
+
+
+<!-- insertAdjacentHTML -->
+<div id="insert">
+	<button>最前面</button>
+	<button>第一个子元素</button>
+	<button>最后一个子元素</button>
+	<button>最后面</button>
+</div>
+<div id="tabs" style="background-color: gray;">
+	<p>子元素</p>	
+</div>
+<script>
+	var bbs = document.querySelectorAll("#insert button");
+	var target = document.getElementById("tabs").children[0];
+	for(var i=0; i<bbs.length; i++){
+		bbs[i].index = i+1;
+		bbs[i].onclick = function(){
+			switch (this.index) {
+				case 1:
+					target.insertAdjacentHTML("beforebegin","<td>在前面</td>");
+					break;
+				case 2:
+					target.insertAdjacentHTML("afterbegin","<td>第一个子元素</td>");
+					break;
+				case 3:
+					target.insertAdjacentHTML("beforeend","<td>最后一个子元素</td>");
+					break;
+				case 4:
+					target.insertAdjacentHTML("afterend","<td>在后面</td>");
+					break;
+			}
+		}
+	}
+</script>
+<br><hr><br>
+
+<!-- 向文本块插入元素节点 -->
+<p id="text2">ioowe oiwoeio iwoweo oweioiowe ioi oiiowo iooo oweioe</p>
+<button id="inser">insert element</button>
+<style>
+	b {color: red;}
+</style>
+<script>
+	document.getElementById("inser").onclick = function(){
+		var textNode = document.getElementById("text2");
+		var newText1 = textNode.firstChild.splitText(6);
+		var newText2 = textNode.childNodes[1].splitText(4).previousSibling;
+		textNode.insertBefore(document.createElement("b"),newText2).appendChild(newText2);
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

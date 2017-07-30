@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第19章</title>
+</head>
+<body>
+
+<!-- 边框样式 -->
+<p id="pid">每张羊皮卷用三十天的时间阅读，然后再进人下一卷。清晨即起，默默诵读；午饭之后，再次默读；夜晚睡前，高声朗读。</p>
+<style>
+	#pid {
+		line-height: 5em;
+		border-width:thick;
+		border-style: inset;
+		border-color:red;
+		border-bottom-style: dashed;
+		border-right: dashed thick red;
+	}
+</style>
+
+
+<!-- 圆角边框 -->
+<div id="box"></div>
+<style>
+	#box {
+		width: 200px; height: 50px;background-color: red;
+		border-top-left-radius:5px 10px;
+		border-radius:5px / 10px;
+		border-radius:50% 20px 25% 5em / 25% 15px 40px 55%;
+	}
+</style>
+
+
+<!-- 图像边框 -->
+<div id="box1">哈哈</div>
+<style>
+	#box1 {
+		width: 90px; height: 90px; background-color: red; padding: 20px;
+		-webkit-border-image: url(images/bordergrid.png) 25/ 30px;
+	}
+</style>
+
+
+<div id="box2"></div>
+<style>
+	#box2 {
+		width: 200px; height: 200px;
+		background-color: lightgray;
+		background-image: url(images/banana.png);
+		background-size: 45px 60px;
+		background-repeat:no-repeat;
+		background-position: center;
+	}
+</style>
+
+
+<style>
+	body {
+		background-image: url(images/triathlon.png);
+		background-size: 800px 300px;
+		background-repeat: no-repeat;
+		/*background-position: center;*/
+		background-attachment: fixed;
+		background-position: 50px 100px;
+	}
+</style>
+
+
+<!-- 背景起始位置和裁剪 -->
+<div id="box3"></div>
+<style>
+	#box3 {
+		width: 200px; height: 100px;
+		background-color: red;
+		padding: 50px;
+		border: 10px black; margin: 20px;
+		background-origin: border-box;
+		background-clip: content-box;
+	}
+</style>
+
+
+<!-- 盒子阴影 -->
+<p id="text">经过多次重复，一种看似复杂的行为就变得轻而易举，实行起来，就会有无限的乐趣，有了乐趣，出于人之天性，我就更乐意常去实行。于是，一种好的习惯便诞生了。习惯成为自然。既是一种好的习惯，也就是我的意原。</p>
+<style>
+	#text {
+		border:10px double red; padding: 25px;
+		box-shadow: 5px 10px 10px 2px green , 10px 15px 20px 2px yellow; /*内阴影  外阴影*/
+	}
+</style>
+
+
+<!-- 轮廓 -->
+<p class="p3">今天，我的老茧化为尘埃。我在人群中昂首阔步，不会有人认出我来，因为我不再是过去的自己、我已拥有新的生命。今天，我的老茧化为尘埃。我在人群中昂首阔步，不会有人认出我来，因为我不再是过去的自己、我已拥有新的生命。</p>
+<p id="ppp" class="p3">今天，我的老茧化为尘埃。我在人群中昂首阔步，不会有人认出我来，因为我不再是过去的自己、我已拥有新的生命。今天，我的老茧化为尘埃。我在人群中昂首阔步，不会有人认出我来，因为我不再是过去的自己、我已拥有新的生命。</p>
+<p class="p3">今天，我的老茧化为尘埃。我在人群中昂首阔步，不会有人认出我来，因为我不再是过去的自己、我已拥有新的生命。今天，我的老茧化为尘埃。我在人群中昂首阔步，不会有人认出我来，因为我不再是过去的自己、我已拥有新的生命。</p>
+<button class="btn">Outline Off</button>
+<button class="btn">Outline On</button>
+<style>
+	.p3 {
+		width: 30%;
+		padding: 5px;
+		border: medium double black;
+		background-color: lightgray;
+		margin: 2px;
+		float: left;
+	}
+	#ppp {
+		outline: 20px solid red;
+	}
+</style>
+
+<script>
+	var btns = document.querySelectorAll(".btn");
+	var oP = document.getElementById("ppp");
+	for(var i=0; i<btns.length; i++){
+		btns[i].onclick = function(e){
+			if(e.target.innerHTML == "Outline Off"){
+				oP.style.outline = "none";
+			}else if (e.target.innerHTML == "Outline On") {
+				oP.style.outlineColor = "green";
+				oP.style.outlineWidth = "100px";
+				oP.style.outlineStyle = "solid";
+			}
+		}
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

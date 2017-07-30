@@ -1,0 +1,41 @@
+/*
+* @Author: Administrator
+* @Date:   2017-02-08 02:24:20
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-02-08 18:15:13
+*/
+
+@charset "UTF-8";	
+@import "style.css";
+
+span {
+	border:1px solid red;
+	width: 30px;
+}
+
+
+p {
+	font-size: 14px !important;		/*重要样式，优先被采用*/
+}
+
+
+a {
+	color: red;
+}
+a.myclass {
+	color: blue;   /*它的特指度更高，优先被采用*/
+}
+
+
+.he {
+	border: inherit;	/*该的元素的边框样式，强行继承其父级元素的边框样式*/
+}
+
+
+/*CSS3中，使用函数算式作为属性值*/
+.func {
+	width: calc(80% - 20px);
+}
+
+
+/*本章结束*/

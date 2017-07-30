@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- meta标签的使用 -->
+	<meta charset="UTF-8">
+	<meta name="author" content="Ape">
+	<meta name="description" content="A simple page">
+	<meta name="robots" content="noindex">
+	<meta http-equiv="refresh" content="5">
+
+	<title>第7章 代码</title>
+
+<!-- link标签的使用 -->
+	<link rel="stylesheet" href="第04章 初探CSS.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> <!-- 指定网页的icon图标 -->
+	<link rel="prefetch" href="page2.html">  <!-- 预先获取资源 -->
+
+</head>
+<body>
+
+<!-- style标签的media属性 -->
+<style media="screen">
+	a {color: red;}
+</style>
+<style media="print">
+	a {color: #000;}
+</style>
+<style media="screen AND (min-width:500px)">
+	body {background-color: grey;}
+</style>
+<style media="screen AND (max-width:500px)">
+	body {background-color: blue;}
+</style>
+
+
+<!-- script标签的 defer属性：待HTML文档解析完成后再执行该脚本 -->
+<script defer src="simple.js"></script>
+
+
+<!-- script标签的 async属性：该脚本会异步执行，不影响HTML文档和其它脚本的解析与执行 -->
+<script async src="simple2.js"></script>
+
+
+<!-- noscript标签的使用 -->
+<noscript>
+	<p>你的浏览器不支持js，请更新您的浏览版本!</p>
+</noscript>
+
+<!-- 当浏览器不支持js或禁用了js时，将跳转至另一个页面中 -->
+<noscript>
+	<meta http-equiv="refresh" content="0; http://www.baidu.com">
+</noscript>
+
+
+<!-- 本章结束 -->
+	
+</body>
+</html>

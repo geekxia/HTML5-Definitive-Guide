@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第20章</title>
+</head>
+<body>
+
+<!-- 内边距 -->
+<p id="papa">人生在世，总有不尽人意，所以偶尔有些波澜也在所难免，偶尔有些坎坷也别太在意。可很多时候，我们的烦恼，却是源自于对得与失的计较，对爱与恨的抉择，对进或退的纠结。久而久之，这样的烦恼却成为了我们生活中，最残酷的现实，和最大的阻碍。倘若我们能够学会放下，学会看开，便不会有如此之多的烦恼。只有坦然，才能让人变的从容，才能把心推向阳光，才能让心微笑向暖。</p>
+<style>
+	#papa {
+		border: 10px double red;
+		background-color: lightgray;
+		background-clip: content-box;
+		padding-top: 5em;
+		padding-bottom: 3em;
+		padding-left: 6em;
+		padding-right: 8em;
+	}
+</style>
+
+<!-- 内边距 -->
+<p class="pp">也许心再阳光，也难免忧伤，路再宽广，也难免彷徨。但那又怎样！人生除了悲伤，便是快乐，前路除了平坦，便是坎坷。人生一世，一半欢喜，一半忧伤，无论你是喜还是忧，时间都是一分一秒的走，它不会因为你的难过而快走一分，也不会因为你的快乐而慢走一秒。</p>
+<style>
+	.pp {
+		border: 10px solid red;
+		background-color: lightgray;
+		border-radius: 1em 4em 1em 4em;
+		padding: 5px 25px 5px 40px;
+	}
+</style>
+
+<!-- 外边距 -->
+<img src="images/banana.png" alt="banana" class="pic">
+<img src="images/banana.png" alt="banana" class="pic">
+<style>
+	img.pic {
+		border: 4px solid red;
+		background-color: lightgray;
+		padding: 4px;
+		margin: 20px 100px;
+	}
+</style>
+
+<!-- 元素尺寸 -->
+<div id="box">
+	<img src="images/banana.png" alt="banana" class="pic1">
+	<img src="images/banana.png" alt="banana" class="pic2">
+</div>
+<style>
+	#box {
+		width: 75%;
+		height: 200px;
+		border: thick solid black;
+	}
+	#box img {
+		background-color: lightgray;
+		border: 4px solid black;
+		margin: 2px;
+		height: 50%;
+	}
+	.pic1 {
+		box-sizing: border-box;
+		width: 50%;
+	}
+	.pic2 {
+		box-sizing: content-box;
+	}
+</style>
+
+
+<!-- 最大/最小尺寸 -->
+<img src="images/banana.png" alt="banana" class="banana">
+<style>
+	.banana {
+		background-color: lightgray;
+		border: 4px solid red;
+		margin: 2px;
+		box-sizing: border-box;
+		min-width: 100px;
+		width: 50%;
+		max-width: 200px;
+	}
+</style>
+
+
+<!-- 处理溢出内容 -->
+<p id="over1">其实人生的困难，是遇到的困难时，我们学会去面对和解决它的过程，而不是困难的本身。正如你丢了一大笔钱，而你失去这笔钱，你未来的日子会很困难，可现在对于你来说，最大的困难，却不是你丢了钱后会怎样，而是你根本难以面对和接受你已经丢钱的事实。</p>
+<p id="over2">其实人生的困难，是遇到的困难时，我们学会去面对和解决它的过程，而不是困难的本身。正如你丢了一大笔钱，而你失去这笔钱，你未来的日子会很困难，可现在对于你来说，最大的困难，却不是你丢了钱后会怎样，而是你根本难以面对和接受你已经丢钱的事实。</p>
+<style>
+	#over1, #over2 {
+		display: inline-block;
+		width: 200px; 
+		height: 100px;
+		border: medium solid red;
+		margin-left: 50px;
+		vertical-align: top;
+		padding: 10px;
+	}
+	#over1 {
+		overflow: hidden;
+	}
+	#over2 {
+		overflow: scroll;
+	}
+</style>
+
+
+<!-- 元素的可见性 visibility -->
+<table>
+	<tr>
+		<th>1</th>
+		<th>1</th>
+		<th>1</th>
+		<th>1</th>
+	</tr>
+	<tr id="firstrow">
+		<th>1</th>
+		<th>1</th>
+		<th>1</th>
+		<th>1</th>
+	</tr>
+	<tr>
+		<th>1</th>
+		<th>1</th>
+		<th>1</th>
+		<th>1</th>
+	</tr>
+</table>
+<p id="btn">
+	<button>Visible</button>
+	<button>Collapse</button>
+	<button>Hidden</button>
+</p>
+<script>
+	var btns = document.querySelectorAll("#btn button");
+	var lines = document.getElementById("firstrow");
+	for(var i=0; i<btns.length;i++){
+		btns[i].onclick = function(e){
+			lines.style.visibility = e.target.innerHTML;
+		}
+	}
+</script>
+
+
+<!-- block -->
+<p>可是许多事情，只有经历过的人，才能云淡风轻，因为经历多了，自然就麻木了，释怀了。很多时候，我们难过的，无非就是不舍，而我们惧怕的，也无非是从未经历过。<span class="sp">但是，今天你所难过的，</span>所惧怕的，总有一天，你都会坦然自若的说一句：不过如此。而你也终将明白，那些正在经历的困难，叫做迷茫，而那些历过的困难，叫做成长。</p><br><br>
+<style>
+	.sp {
+		display: block;
+		border: medium solid red;
+		margin: 2px;
+	}
+</style>
+
+<!-- inline -->
+<p class="ins">也许心再阳光，也难免忧伤，路再宽广，也难免彷徨。但那又怎样！人生除了悲伤，便是快乐，前路除了平坦，便是坎坷。</p>
+<p class="ins">人生一世，一半欢喜，一半忧伤，无论你是喜还是忧，时间都是一分一秒的走，它不会因为你的难过而快走一分，也不会因为你的快乐而慢走一秒。</p><br><br><br>
+<style>
+	.ins {
+		display: inline;
+		border: medium solid red;
+		line-height: 2em;
+	}
+</style>
+
+
+<!-- display="run-in" 插入类型 -->
+<span class="run">路再宽广，也难免彷徨.</span>
+<p class="runali">人生一世，一半欢喜，一半忧伤，无论你是喜还是忧，时间都是一分一秒的走，它不会因为你的难过而快走一分，也不会因为你的快乐而慢走一秒。</p><br><br><br>
+<style>
+	.run {
+		display: run-in;
+		border: medium solid red;
+	}
+	.runali {
+		display: inline;
+	}
+</style>
+<hr><hr>
+
+<!-- display="none" 隐藏类型 -->
+<p id="toggle" style="color: blue;">人生于世，倘若能够拥有一付达观的心境，便能超然脱俗不为世事所累，面对一切，可以引吭高歌，可以长歌当哭，可以豪饮一醉，也可以平静如水。可奈何我仅是个凡人，终究难以拥有那样豁达和潇洒。也许一个人的一生，不在于成败，而是在于风雨中的那份坚强和执著，不管结局如何，最起码我明白自己需要什么。</p>
+<p>最残酷的现实，和最大的阻碍。倘若我们能够学会放下，学会看开，便不会有如此之多的烦恼。只有坦然，才能让人变的从容，才能把心推向阳光，才能让心微笑向暖。</p>
+<input type="button" value="显示"><span> </span><input type="button" value="隐藏">
+<script>
+	var oBtn = document.querySelectorAll("[type='button']");
+	var oPP = document.getElementById("toggle");
+	for(var j=0; j<oBtn.length; j++){
+		oBtn[j].onclick = function(e){
+			if(e.target.value == "显示"){
+				oPP.style.display = "block";
+			}else{
+				oPP.style.display = "none";
+			}
+		}
+	}
+</script>
+<hr>
+<hr>
+
+
+<!-- 浮动 -->
+<p class="tog" style="color: red;">喜欢你，已经很久很久了，久到春秋变幻，山河失色，我还是一如既往的将你放在心口，让这份爱，感受到心的悸动和火热。</p>
+<p class="tog" style="color: green;">一份沉默的爱，既是一种无言的沧桑，也是一种守望的惆怅。圆月来不及新瘦，溪流来不及冰封，我却已将你放在心头，百转千回了无数个春暖花开。</p>
+<p style="color: blue;">爱情，是美好的，也是忧伤的，它是这个世上最折磨人的东西。走过了许多路，见过了许多人，我却在某一时刻独独遇见了你，然后用尽生平的力气爱上了你。许久许久以后，你成为了我心灵上的一枚朱砂，自此，紫陌垂杨，情深意长。</p>
+<button class="bbb">left</button>
+<button class="bbb">right</button>
+<button class="bbb">none</button>
+<style>
+	p.tog {
+		border: medium solid black;
+		width: 40%;margin: 2px;
+		padding: 5px;
+	}
+</style>
+<script>
+	var oBBB = document.querySelectorAll(".bbb");
+	var oPPP = document.querySelectorAll(".tog");
+	for(var i=0; i<oBBB.length;i++){
+		oBBB[i].onclick = function(e){
+			for(var j=0; j<oPPP.length; j++){
+				oPPP[j].style.cssFloat = e.target.innerHTML;
+			}
+
+		}
+	}
+</script>
+<hr><br>
+
+
+<!-- 清除浮动 -->
+<div class="dd ee"></div>
+<div class="dd cc"></div>
+<p>我总是在想，那些相信时间可以疗伤的人，终究还是爱的不够吧？“绿萝拂过衣襟，青云打湿诺言”，一卷荷风，几场梅雨，便独独消瘦了爱情，只留下一个人的细水长流，这总归还是爱的不够深吧？</p>
+<button class="bbb" value="left">左浮动</button>
+<button class="bbb" value="right">右浮动</button>
+<button class="bbb" value="none">不浮动</button>
+<style>
+	.dd {
+		width: 50px; height: 50px;
+		background-color: red;margin: 5px;
+		float: left;
+	}
+	.cc {
+		clear: left;  /*该元素的左侧不能与其它浮动元素挨着*/
+	}
+</style>
+<script>
+	var obbb = document.querySelectorAll(".bbb");
+	var oppp = document.querySelectorAll(".dd");
+	for(var i=0; i<obbb.length; i++){
+		obbb[i].onclick = function(e){
+			for(var j=0; j<oppp.length; j++){
+				oppp[j].style.cssFloat= e.target.value;
+			}
+		}
+	}
+</script>
+
+
+<!-- 本章结束 -->
+
+
+<br><br><br><br><br><br><br><br><br>
+</body>
+</html>

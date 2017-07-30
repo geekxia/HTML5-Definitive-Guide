@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格元素</title>
+</head>
+<body>
+	
+<!-- 最基础的表格，表格会自动调整单元格的宽与高。 -->
+<table>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td>this is a table.</td>
+		<td>table is easy.</td>
+		<td>stay hungry.</td>
+	</tr>
+</table>
+<hr>
+
+<!-- th 表头单元格 -->
+<table>
+	<tr>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>身高</th>
+	</tr>
+	<tr>
+		<th>夏海峰</th>
+		<td>28</td>
+		<td>168</td>
+	</tr>
+	<tr>
+		<th>蔡芸</th>
+		<td>26</td>
+		<td>153</td>
+	</tr>
+</table>
+<hr>
+
+
+<!-- 为表格添加结构:thead / tbody / tfoot -->
+<table>
+	<thead>
+		<tr>
+			<th>姓名</th>
+			<th>身高</th>
+			<th>住址</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>韦德</th>
+			<td>213</td>
+			<td>芝加哥</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>球员</th>
+			<th>后卫</th>
+			<th>美国</th>
+		</tr>
+	</tfoot>
+</table>
+<hr>
+
+<!-- 制作跨行/跨列的表格 -->
+<table border="1px">
+	<tr>
+		<th colspan="2">1</th>
+		<th>2</th>
+	</tr>
+	<tr>
+		<th rowspan="2">1</th>
+		<th>2</th>
+		<th>3</th>
+	</tr>
+	<tr>
+		<th>2</th>
+		<th>3</th>
+	</tr>
+</table>
+<hr>
+
+
+<!-- 为表格添加标题 -->
+<table border="1px">	
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+	<caption>我是表格的标题</caption>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+</table>
+<hr>
+
+
+<!-- 列组、列 -->
+<table>
+	<colgroup id="cols">
+		<col id="col1" span="2">    <!-- 代表了该表格的前两列 -->
+		<col id="col2">				<!-- 代表该表格的第3列 -->
+		<col id="col3">				<!-- 代表该表格的第4列 -->
+	</colgroup>
+	<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<style>
+	#cols #col1 {background-color: red;}
+	#cols #col2 {background-color: green;}
+	#cols #col3 {background-color: blue;}
+</style>
+<hr>
+
+
+<!-- border属性，用于告诉浏览器该表格不是用于布局的 -->
+<table border="1">
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+</table>
+
+<!-- 本章结束 -->
+
+</body>
+</html>

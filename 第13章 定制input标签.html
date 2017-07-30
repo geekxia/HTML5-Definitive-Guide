@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第13章</title>
+</head>
+<body>
+
+
+<!-- input标签的 maxlength属性、size属性 -->
+<form>
+	<input type="text" maxlength="20"><br>   <!-- 只能输入20个字 -->
+	<input type="text" size="20"><br>			<!-- 只能显示20个字 -->
+	<input type="text" size="20" maxlength="20">	<!-- 只能输入并且显示20个字 -->
+</form>
+<br><br>
+
+
+<!-- input元素的 placeholder / value属性 -->
+<form>
+	<input type="text" placeholder="Your name"><br>
+	<input type="text" placeholder="Your age"><br>
+	<input type="text" value="男">
+</form>
+<br><br>
+
+<!-- input标签的 list属性 -->
+<form>
+	<input type="text" list="items">
+</form>
+<datalist id="items">
+	<option value="Apples"></option>
+	<option value="Refreshing Oranges"></option>
+	<option value="Cherries">Cherries</option>
+</datalist>
+<br><hr><br>
+
+
+<!-- input标签的 readonly / disabled属性 -->
+<form>
+	<input type="text" readonly value="只读文本框">
+	<input type="text" disabled value="被禁用的文本框">
+</form>
+<br><hr><br>
+
+
+<!-- input 密码框 -->
+<form>
+	<input type="password" name="password" placeholder="最少10位字符，字母开头">
+</form>
+<br><hr><br>
+
+
+<!-- input 按钮 -->
+<form>
+	<input type="submit" value="提交">
+	<input type="reset" value="重置">
+	<input type="button" value="普通按钮">
+</form>
+<br><hr><br>
+
+
+<!-- input 数字输入框 -->
+<form>
+	<input type="number" min="0" max="100" step="5" value="2" name="price">
+</form>
+<br><hr><br>
+
+
+
+<!-- input 滑块式的数值输入框 -->
+<form>
+	<input type="range" min="0" max="100" step="2" value="10" name="music">
+</form>
+<br><hr><br>
+
+<!-- input 复选框 -->
+<form>
+	<label for="">我已阅读以上内容:</label>
+	<input type="checkbox" checked>
+</form>
+<br><hr><br>
+
+
+<!-- input 单选按钮，多选一 -->
+<form>
+	<fieldset>
+		<legend>请选择你国籍</legend>
+		<input type="radio" value="中国" name="contry" checked><label>中国</label>
+		<input type="radio" value="美国" name="contry"><label>美国</label>
+		<input type="radio" value="日本" name="contry"><label>日本</label>
+		<input type="radio" value="德国" name="contry"><label>德国</label>
+		<input type="radio" value="意大利" name="contry"><label>意大利</label>
+		<input type="radio" value="希腊" name="contry"><label>希腊</label>
+	</fieldset>
+</form>
+<br><hr><br>
+
+
+<!-- 用于输入邮箱/电话/网址的input框 -->
+<form>
+	<label>邮箱：</label>
+	<input type="email" name="email" placeholder="user@domain.com">
+	<label>电话：</label>
+	<input type="tel" name="tel" placeholder="(xxx)-xxx-xxxx">
+	<label>网址：</label>
+	<input type="url" name="url" placeholder="http://www.xxx.com">
+</form>
+<br><hr><br>
+
+
+<!-- input标签的 日期/时间框 -->
+<form>
+	<label>请选择日期：</label>
+	<input type="date" name="date">
+</form>
+<br><hr><br>
+
+<!-- input标签的 颜色输入框 -->
+<form>
+	<label>请选择颜色：</label>
+	<input type="color" name="color" value="#00ff00">
+</form>
+<br><hr><br>
+
+<!-- input标签的 搜索用词输入框 -->
+<form>
+	<label>你要搜索的词是：</label>
+	<input type="search" name="search">
+</form>
+<br><hr><br>
+
+<!-- input标签 隐藏的数据项 -->
+<form>
+	<fieldset>
+		<legend>隐藏的数据项，将被提交</legend>
+		<input type="hidden" value="213" name="password">
+		<input type="hidden" value="xia" name="name">
+		<button>有数据被提交</button>
+	</fieldset>
+</form>
+<br><hr><br>
+
+<!-- input标签实现 图像按钮 -->
+<form>
+	<input type="image" src="images/accept.png" name="submit" alt="图片按钮">
+</form>
+<br><hr><br>
+
+
+<!-- input标签 实现文件上传 -->
+<form enctype="multipart/form-data">
+	<input type="file" name="file1"><br><br>
+	<input type="file" name="file1"><br><br>
+	<button>上传文件</button>
+</form>
+<br><hr><br>
+
+
+<!-- 本章结束 -->
+
+
+<br><br><br><br><br>
+</body>
+</html>

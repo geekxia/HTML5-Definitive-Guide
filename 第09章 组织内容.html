@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第09章</title>
+</head>
+<body>
+
+
+<!-- pre标签：预格式 -->
+<pre>
+	<code>
+		function pre(agrs){
+			alert("这是预格式编排");
+		}
+	</code>
+</pre>
+
+
+<!-- 大段引用 -->
+<blockquote cite="http://www.baidu.com">
+	大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用大段的引用。
+</blockquote>
+
+
+<!-- 有序列表 -->
+<ol start="10" type="A">
+	<li>苹果</li>
+	<li>梨子</li>
+	<li>香蕉</li>
+</ol>
+
+
+<!-- 无序列表 -->
+<ul>
+	<li>苹果</li>
+	<li>梨子</li>
+	<li>香蕉</li>
+</ul>
+
+
+<!-- li标签和它的value属性 -->
+<ol>
+	<li>东</li>
+	<li value="15">西</li>
+	<li>南</li>
+	<li value="200">北</li>
+</ol>
+
+
+<!-- 说明列表 -->
+<dl>
+	<dt>Apple</dt>
+	<dd>它是水果之王，味甜，很贵！</dd>
+	<dt>Orange</dt>
+	<dd>我家妞妞最爱的水果之一，酸酸甜甜。</dd>
+	<dd>形容黄圆，可爱极了！</dd>
+</dl>
+
+
+<!-- 使用content和:before，生成自定义列表 -->
+<ul id="outerlist">
+	<li>bananas</li>
+	<li>mangose,including:
+		<ul class="innerlist">
+			<li>Haden</li>
+			<li>Keitt</li>
+			<li>Kent</li>
+		</ul>
+	</li>
+	<li>cherrise</li>
+	<li>plums,including:
+		<ul class="innerlist">
+			<li>Elephant</li>
+			<li>Stanley</li>
+			<li>Seneca</li>
+		</ul>
+	</li>
+	<li>peaches</li>
+	<li>grapes</li>
+</ul>
+<style>
+	body {
+		counter-reset: OuterItemCount 5 InnerItemCount;   /* ？？ */
+	}
+	#outerlist {
+		list-style: none;
+	}
+	#outerlist>li:before{
+		content: counter(OuterItemCount) ".";	   /* ？？ */
+		counter-increment: OuterItemCount 2;	   /* ？？ */
+	}
+	ul.innerlist>li:before {
+		content: counter(InnerItemCount,lower-alpha) ".";	   /* ？？ */
+		counter-increment: InnerItemCount;					   /* ？？ */
+	}
+</style>
+
+<!-- figure 插图、图示 -->
+<figure>
+	<figcaption>Using those codes.</figcaption>
+	<pre>
+	<code>
+	var a=4;
+	var b=5;
+	var c = a + b;
+	alert(c);
+	</code>
+	</pre>
+</figure>
+
+
+<!-- 本章结束 -->
+</body>
+</html>

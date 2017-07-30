@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第18章</title>
+	 <style>
+	 	/*匹配根元素*/
+	 	:root {
+	 		border: thin red solid;
+	 		padding: 4px;
+	 	}
+
+	 	/*子元素选择器*/
+	 	body>p:first-child {
+	 		border: thin blue solid;
+	 		padding: 4px;
+	 	}
+	 	body>#box>span:first-child {
+	 		color: red;
+	 	}
+		:last-child {
+			font-size: 20px;
+		}
+		:only-child {
+			background-color: grey;
+		}
+
+
+		/*nth-child选择器*/
+		body>p:nth-child(3){
+			color: red;
+		}
+
+
+		/*UI伪类选择器*/
+		:enabled {
+			padding: 10px;
+			border: 1px solid yellow;
+			display: inline-block;
+			background-color: yellow;
+		}
+		:checked + span {
+			background-color: red;
+			color: white;
+			padding: 5px;
+			border: medium solid black;
+		}
+		:defalut {
+			outline: medium solid red;
+		}
+		:invalid {
+			outline: medium solid red;
+		}
+		:valid {
+			outline: medium solid green;
+		}
+		:required {
+			border: 5px solid #45ee80;
+		}
+
+		/*动态伪类选择器*/
+		:link {
+			text-decoration: none;
+			color: red;
+		}
+		:visited {
+			color: black;
+		}
+		p:hover {
+			background-color: grey;
+		}
+		p:active {
+			background-color: yellow;
+		}
+
+		/*取反选择器*/
+		p:not([class]){
+			font-size: 36px;
+		}
+
+		div:empty {
+			width: 800px;
+			height: 55px;
+			margin: 20px auto;
+			background-color: #aa5609;
+		}
+		:target {
+			font-size: 80px;
+		}
+
+	 </style>
+</head>
+<body>
+
+<p>事实上，成功与失败的最大分野，来自不同的习惯。好习惯是开启成员的钥匙，坏习惯则是一扇向失败敞开的门。因此，我首先要做的便是养成良好的习惯，全心全意去实行。</p>
+<p class="pis">事实上，成功与失败的最大分野，来自不同的习惯。好习惯是开启成员的钥匙，坏习惯则是一扇向失败敞开的门。因此，我首先要做的便是养成良好的习惯，全心全意去实行。</p>
+<p>事实上，成功与失败的最大分野，来自不同的习惯。好习惯是开启成员的钥匙，坏习惯则是一扇向失败敞开的门。因此，我首先要做的便是养成良好的习惯，全心全意去实行。</p>
+
+
+<div id="box">
+	<span>成功与失败的最大分野</span><br>
+	<span>成功与失败的最大分野</span><br>
+	<span>成功与失败的最大分野</span><br>
+</div>
+<div></div>
+
+<a href="http://www.baidu.com">链接</a>
+
+
+<form>
+	<p>
+		<label for="apples">请选择:</label>
+		<input type="checkbox" id="apples" name="apples">
+		<span>This will go red when checked.</span>
+	</p>
+	<input type="submit" value="提交">
+	<button>提交</button>
+</form>
+
+<hr>
+
+
+<form>
+	<label>Name: <input type="text" required></label><br>
+	<label>City: <input type="text" required></label><br>
+	<button type="submit">Submit</button>
+</form>
+
+
+<!-- 本章结束 -->
+
+
+</body>
+</html>

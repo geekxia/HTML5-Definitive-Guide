@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第39章</title>
+	<style>
+		#data {border-collapse: collapse;margin-left: 50px;}
+		#data th, #data td {padding: 4px;}
+		#box1 input {border:thin solid black; padding: 2px;}
+		#box1 label {min-width: 50px;display: inline-block;text-align: right;}
+		#countmsg,#btns {margin-left: 50px; margin-top: 5px; margin-bottom: 5px;}
+	</style>
+</head>
+<body>
+
+
+<!-- 本地存储 -->
+<div id="box1">
+	<div>
+		<label for="">Key:</label>
+		<input type="text" id="key" placeholder="Enter key">
+	</div>
+	<div>
+		<label for="">Value:</label>
+		<input type="text" id="value" placeholder="Enter value">
+	</div>
+	<div id="btns">
+		<button id="add">Add</button>
+		<button id="clear">Clear</button>
+	</div>
+	<p id="countmsg">There are <span id="count"> </span> items.</p>
+</div>
+<table id="data" border="1">
+	<tr>
+		<th>Item Count:</th>
+		<td id="count">-</td>
+	</tr>
+</table>
+
+<script>
+	displayData();
+
+	var btns = document.querySelectorAll("#btns button");
+	for(var i=0; i<btns.length; i++){
+		btns[i].onclick = handBtn;
+	}
+
+	function handBtn(e){
+		switch (e.target.id) {
+			case "add":
+				var key = document.getElementById("key").value;
+				var value = document.getElementById("value").value;
+				localStorage.setItem(key,value);
+				break;
+			case "clear":
+				localStorage.clear();
+				break;
+		}
+		displayData();
+	}
+	function displayData(){
+		var tab = document.getElementById("data");
+		tab.innerHTML = "<tr><th>Item Count:</th><td id='count'>-</td></tr>";
+		var itemCount = localStorage.length;
+		document.getElementById("count").innerHTML = itemCount;
+		for(var i=0; i<itemCount; i++){
+			var key = localStorage.key[i];
+			var val = localStorage[key];
+			tab.innerHTML += "<tr><th>"+key+"</th><td>"+val+"</td></tr>";
+		}
+	}
+</script>
+
+<!-- 监听onstorage事件 -->
+<div style="clear: both;"></div>
+<hr><br>
+<table id="eve" border="1">
+	<tr>
+		<th>key</th>
+		<th>oldValue</th>
+		<th>newValue</th>
+		<th>url</th>
+		<th>storageArea</th>
+	</tr>
+</table>
+<script>
+	var eveTab = document.getElementById("eve");
+	window.onstorage = handStorChange;
+	function handStorChange(e){
+		eveTab.innerHTML += "<tr><td>"+e.key+"</td><td>"+e.oldValue+"</td><td>"+e.newValue+"</td><td>"+e.url+"</td><td>"+e.storageArea+"</td></tr>";
+	}
+</script>
+<div style="clear: both;"></div>
+<br><hr><br><br>
+
+
+<!-- 会话存储 -->
+<form action="" id="ses">
+	<input type="text" id="key1" placeholder="输入键">
+	<input type="text" id="value1" placeholder="输入值">
+</form><br>
+<div id="box">
+	<button id="btn1">存储</button>
+	<button id="btn2">清除</button>
+</div>
+<p id="sesmsg"></p>
+<script>
+	
+
+	var bts = document.querySelectorAll("#box button");
+	for(var i=0; i<bts.length; i++){
+		bts[i].onclick = handSes;
+	}
+	dispalyMsg();
+
+	function handSes(e){
+		switch (e.target.id) {
+			case "btn1":
+				var key2 = document.getElementById("key1").value;
+				var val2 = document.getElementById("value1").value;
+				if(key2 != ""){
+					sessionStorage.setItem(key2,val2);
+				}				
+				break;
+			case "btn2":
+				sessionStorage.clear();
+				break;
+		}
+		dispalyMsg();
+	}
+	function dispalyMsg(){
+		var oP = document.getElementById("sesmsg");
+		oP.innerHTML = "有 "+sessionStorage.length+" 条数据。<br />";
+		var len = sessionStorage.length;
+		for(var i=0; i<len; i++){
+			var keys = sessionStorage.key(i);
+			oP.innerHTML += "第 "+(i+1)+" 条数据的键是："+keys+" 。 ";
+			oP.innerHTML += "第 "+(i+1)+" 条数据的值是："+sessionStorage[keys]+" 。<br />"
+		}
+	}
+</script>
+
+<br><hr><br>
+
+<!-- onstorage事件 -->
+<button id="do">操作sessionStorage，监听事件</button>
+<script>
+	var oDo = document.getElementById("do");
+	oDo.onclick = function(e){
+		var rad = Math.floor(Math.random()*100000);
+		sessionStorage.setItem("item"+rad, "values"+rad);
+	}
+	window.onstorage = function(e){
+		alert(e.key);
+	}
+</script>
+
+
+
+<!-- 本章结束 -->
+
+	
+</body>
+</html>

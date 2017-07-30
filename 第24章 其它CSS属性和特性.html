@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第24章</title>
+</head>
+<body>
+
+<!-- color 前景色 -->
+<p id="colo">哈哈中哈哈哈哈哈哈</p>
+<style>
+	#colo {
+		color: rgba(222,45,102,0.8);
+		font-family: sans-serif;
+		font-size: 20px;
+	}
+	#colo:hover {
+		color: blue;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+</style>
+<br><br>
+
+
+<!-- 透明度 -->
+<p id="ip">ipiwepiwwiewopeijwpiepweipriwpriipwrpwriwpr</p>
+<style>
+	#ip {
+		background-color: red;
+		color: white;
+		font-size: 20px;
+		border: 1px double red;
+		opacity: 0.4;
+	}
+</style>
+<br><hr><br>
+
+
+<!-- 表格相关的CSS样式 -->
+<table border="1" id="tab">
+	<tr>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+</table>
+<style>
+	#tab {
+		/*border-collapse: collapse;*/
+		border-collapse: separate;
+		text-align: center;
+		border-spacing: 10px;
+		empty-cells: hide;
+	}
+	#tab td {
+		width: 50px;
+	}
+</style>
+<br><hr><br>
+
+
+<table id="ta" border="1">
+	<caption>标题的位置</caption>
+	<tr>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+	</tr>
+		<tr>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+	</tr>
+		<tr>
+		<td>11111111111111111111111111111111111111111111111111111111111111</td>
+		<td>11</td>
+		<td>11</td>
+	</tr>
+</table>
+<style>
+	#ta {
+		caption-side: bottom;
+		table-layout: fixed;
+		width: 100%;
+	}
+	#ta td {padding: 5px;}
+	#ta caption {
+		background-color: red;
+		color: white;
+	}
+</style>
+<br><hr><br>
+
+
+<!-- 列表相关样式 -->
+<ol id="olss">
+	<li>ipriwpriwpr</li>
+	<li>ipriwpriwpr</li>
+	<li class="haha">ipriwpriwpr</li>
+	<li class="ha">ipriwpriwpr</li>
+	<li>ipriwpriwpr</li>
+</ol>
+<style>
+	#olss {
+		/*list-style-type: lower-alpha;*/
+		list-style-image: url(images/banana-vsmall.png);
+		list-style-position: inside;
+	}
+	#olss li.haha {
+		list-style-position: outside;
+	}
+	#olss li.ha {
+		list-style-type: upper-alpha;
+	}
+	#olss li {
+		background-color: lightgray;
+		cursor: progress;
+	}
+
+</style>
+
+
+<!-- 本章结束 -->
+	
+</body>
+</html>

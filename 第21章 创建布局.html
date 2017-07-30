@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第21章</title>
+</head>
+<body>
+
+<!-- position 定位类型 -->
+<p>客厅是香，小区是香，整个东湖这时候都是香啊。她不因为低微而轻浮，不因为热情而骚动；她没有取向，不用吮吸，就能香到骨髓里；她不是那种暗香涌动，也不是轻香浮动，而是漫，漫无边际地香着，似乎是无源之香，但一定是桂花香。有风香百里，无风香九楼，我不由地要去寻觅.</p>
+<p>几天后的傍晚，我应邀与几位朋友小聚。当我匆匆下楼走在小区的幽径上，一缕温软的晚风吹来，晚风里蕴含着桂花的暗香，暗香轻拂着我的肌肤，使我陡然神清，那感觉，就像曾经遇到过的最温柔的女子在我假寐中轻捋我的发丝，轻抚我的肌肤，轻诉着她的心事。</p>
+<img src="images/banana.png" alt="banana" class="ban">
+<img src="images/apple.png" alt="apple" class="app">
+<p>绵绵秋风绵绵雨，一阵秋雨一阵凉。我喜欢雨，即使是这瑟瑟的秋雨，雨夜、雨声与雨情，都让我心旷神怡。</p>
+<p>这时的桂花树，翁翁郁郁地驻立在自己的地方，树冠上的叶儿折射着夜灯，不时地泛起湿湿的流光。我看不见桂花了，却闻得到暗香。雨丝越来越密了，夜幕下的雨帘仿佛一袭走不出的纱帐，纱帐里罩着暗香，我在纱帐里闻香，在纱帐里遐想。</p>
+<p>
+	<button class="btn">static</button>
+	<button class="btn">relative</button>
+	<button class="btn">absolute</button>
+	<button class="btn">fixed</button>
+</p>
+<style>
+	img.ban {
+		top: 50px;
+		left: 150px;
+		border: medium solid red;
+	}
+</style>
+<script>
+	var oBTN = document.querySelectorAll(".btn");
+	var oIMG = document.querySelector(".ban");
+	for(var i=0; i<oBTN.length; i++){
+		oBTN[i].onclick = function(e){
+			oIMG.style.position = e.target.innerHTML;
+		}
+	}
+</script>
+
+
+<!-- z-index 层叠顺序 -->
+<style>
+	img.app {
+		position: relative;
+		top: 0px;
+		left: -90px;
+		width: 170px;
+		z-index: -1;
+		background-color: grey;
+		border: medium solid green;
+	}
+</style>
+<hr><br>
+
+
+<!-- 多列 -->
+<p id="col">沉浸在爱情中的男女，幸福着，苦恼着，寂寞着，甜蜜着。陌生的两个人因为相爱走在一起，不断的磨合，求同存异，在天长日久里达到共鸣。爱情不能总是不食人间烟火，生活五味杂陈，现实一次次的敲打，灵魂一次次的撞击，人性在生活中得到洗礼，爱情在矛盾中不断升华。有时候两个人天天呆在一起，却感觉生活越来越平淡了，有时候两个人的距离离得越来越远了，心却靠的越来越近了。
+<img src="images/apple.png" alt="app" width="100" class="pic">
+小别胜新婚，有些离别并不是真正意义上的离别，就像有些分开并不是真正的分开。真正爱着的两个人，无论何时何地，心都是相通的，爱情把两颗心紧紧地连在一起。前些日子看一热播剧场《北上广不相信眼泪》，里面的男女主人公赵小亮和潘芸是一对深深相爱着的伴侣，职场现实中，一系列的阴差阳错，让两个人的爱情几次出现危机，爱了，伤了，痛了，分手了，当他们几经反思，当他们冲破重重阻碍，故事最后，赵小亮追到机场和潘芸激情拥吻在一起，周围的观众无不唏嘘，为之鼓掌，我们为这样的爱情而感动。
+<img src="images/banana.png" alt="ban" width="100" class="pic">
+真正的爱情是经得起时间考验的。雪小禅说:“爱情，也许终究只是少数人的事情，到底，它才是极致的奢侈品，它只赠给那些最真心的恋人。”无端的爱上这一段话和写这一段话的人。我想，这个人应该像他写的情话一样的美，一样的感情细腻，心里翻狂澜，胸中藏大海，而又是人中谦谦君子，温文而儒雅。爱情本身就是一个谜，我是你写好的谜面，你是我今生永远也猜不透的谜底，就这么甘愿在你的温存里沉迷，永远也不要醒来。与你的相逢，是我一生的期待，爱情不是占有，你若安好，便是晴天，就这么远远的看着，相互欣赏着就已经很满足。无论走的多远，你始终在我的视线里，从未远离。生命不息，爱你不止！有人说，一个人住在另一个人的心里，又不在现实，这有什么用？百年之后，身后将什么也带不走，一切都不过是幻影罢了，自己才不会那么傻呢，一生为一份摸不着的爱情所累。有情相伴朝夕，有爱相守流年！时光静好，与君语；细水流年，与君同；繁华落尽，与君老。落落与君好，相看两不厌，莲生两朵，花开并蒂，今生有你就足够！一世安暖一世情，今生，相携相伴，与你在灵魂里一起皈依！</p>
+<style>
+	.pic {
+		border: medium double red;
+		background-color: lightgray;
+		padding: 2px;
+		margin: 5px;
+		float: left;
+	}
+	#col {
+		/*column-count: 3;*/
+		column-width: 10em;
+		column-fill:balance;
+		column-rule:medium solid black;
+		column-gap:1.5em;
+	}
+</style>
+<hr><br>
+
+
+<!-- 创建 弹性盒模型 flex-->
+<div id="container">
+	<p id="first">喜欢养花，并不是因为花香的味道醉心，而是对于生命过程的一种演绎的赞叹，她们默默地在尘埃中经历风雨，顽强的生长，坚强的面对花开花落的喜与悲，直至随着沧桑岁月的老去，无一丝叹息。</p>
+	<p id="second">每一株花都是含笑的精灵，每一种花都是一个故事，岁岁年年的时光，她们始终用含情的姿态演绎着心语，舞尽人间绝唱，不顾及任何人的眼光，自顾的随岁月变老。</p>
+	<p id="third">写文字的手，从不嫌泥土的粗糙，从不嫌扎手，每每都是不戴手套，捧来抓去的，它们会滋润着许许多多的生命，而我们人类离去时，不也是入土为安吗？那是我们终究的家，即便活着，我们也都是以最低的姿态活着的，哪怕低到尘埃，我相信每个人都会开出最美的人生之花；而我的双手，捧起的难道不是自己和每一个精灵的家吗？</p>
+</div>
+<style>
+	#container {
+		display: flexbox;	/*把容器变成弹性盒子*/
+		display: -webkit-box;
+		-webkit-box-align:center;  /*垂直空间的分配方式*/
+		-webkit-box-pack:center;   /*处理水平方向上的多余空间*/
+	}
+	#container p {
+		width: 150px;
+		border: medium double green;
+		background-color: lightgray;
+		margin: 5px;
+		max-width: 250px;  /*指定元素的最大宽度*/
+	}
+	#container #second {
+		box-flex:1;
+		-webkit-box-flex:1;  /*把元素变成弹性元素*/
+	}
+	#container #first {
+		box-flex:2;
+		-webkit-box-flex:2;  /*把元素变成弹性元素*/
+	}
+</style>
+<hr><br>
+
+<!-- CSS表格布局 -->
+<div id="table">
+	<div class="row">
+		<p>于是不可救药的爱上了养花，于是人生便多了很多的故事，于是闲散的时光有了知音相伴，于是深夜灵魂便不再孤单寂寞。</p>
+		<p>一直相信，喜欢养花的女人，骨子是软的，眸子是含情的，心是风情万种的。她们相信每一种花语的传说，相信每一朵花都是仙子，相信人间所有精美女子都是最美的花。</p>
+		<p>每一株花都是含笑的精灵，每一种花都是一个故事，岁岁年年的时光，她们始终用含情的姿态演绎着心语，舞尽人间绝唱，不顾及任何人的眼光，自顾的随岁月变老。</p>
+	</div>
+	<div class="row">
+		<p>没由来的感动，从此便喜欢上了花花草草，带着敬畏的心去种养。<img src="images/banana.png" width="100"></p>
+		<p>去感受，去捕捉生命中的每一次起起落落的感动。<img src="images/apple.png" width="100"></p>
+		<p>沏一壶茶坐在阳台，微笑着看她们每一点新绿，静静地听她们生长的声音。</p>
+	</div>
+</div>
+<style>
+	#table {
+		display: table;
+	}
+	#table div.row {
+		display: table-row;
+		background-color: lightgray;
+	}
+	#table p {
+		display: table-cell;
+		border: thin solid red;
+		padding: 15px;
+		/*margin: 15px;*/
+	}
+	#table p img {
+		float: left;
+	}
+</style>
+
+<br><hr><br>
+
+
+<!-- 本章结束 -->
+
+</body>
+</html>

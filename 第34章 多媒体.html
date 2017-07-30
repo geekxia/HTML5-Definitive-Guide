@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第34章</title>
+	<style>
+		table {
+			border:1px solid red;
+			border-collapse: collapse;
+		}
+		th,td {
+			padding: 3px 4px;
+			width: 120px;
+		}
+	</style>
+</head>
+<body>
+
+<!-- 使用video元素 -->
+<video src="images/timessquare.webm" width="360" height="240" autoplay controls preload="none" muted="">
+	您的浏览不支持video，请更新你的浏览器版本。
+</video>
+
+<!-- 视频的预加载方式 -->
+<video src="images/timessquare.webm" width="360" height="240" controls muted preload="metadata">
+	您的浏览不支持video，请更新你的浏览器版本。
+</video>
+<video src="images/timessquare.webm" width="360" height="240" controls muted preload="auto">
+	您的浏览不支持video，请更新你的浏览器版本。
+</video>
+
+
+<!-- 视频的点位图片 -->
+<video src="images/timessquare.webm" width="360" height="240" controls preload="none" poster="images/poster.png">
+	您的浏览不支持video，请更新你的浏览器版本。
+</video>
+<img src="images/poster.png" alt="" width="360" height="230">
+
+<br><hr><br>
+
+<video src="images/timessquare.webm" width="800" height="240" controls></video>
+
+<hr><br>
+
+<!-- 指定视频格式 -->
+<video controls width="360" height="240">
+	您的浏览不支持video，请更新你的浏览器版本。
+	<source src="images/timessquare.mp4" type="video/mp4">
+	<source src="images/timessquare.webm" type="video/webm">
+	<source src="images/timessquare.ogv" type="video/ogv">
+</video>
+
+<br><hr><br>
+
+
+<!-- 音频 -->
+
+<audio controls autoplay>
+	<source src="images/music.mp3">
+	您的浏览不支持audio，请更新你的浏览器版本。
+</audio>
+<br><hr><br>
+
+
+<!-- DOM操作媒体，获取媒体信息 -->
+<video controls width="360" height="240" preload="metadata" id="media1">
+	<source src="images/timessquare.webm" type="video/webm">
+	<source src="images/timessquare.mp4" type="video/mp4">
+	不支持啊，请更新浏览器！
+</video>
+<table id="info" border="1">
+	<tr>
+		<th>Property</th>
+		<th>Value</th>
+	</tr>
+</table>
+
+<script>
+	var oVideo = document.getElementById("media1");
+	var oInfo = document.getElementById("info");
+
+	var proplist = ["autoplay","currentSrc","controls","loop","muted","preload","src","volume"];
+	for(var i=0;i<proplist.length;i++){
+		oInfo.innerHTML += "<tr><td>"+proplist[i]+"</td><td>"+oVideo[proplist[i]]+"</td></tr>";
+	}
+</script>
+
+<br><hr><br>
+
+
+<!-- 评估浏览器的支持能力 -->
+<video id="media2" controls width="360" height="240" preload="metadata">
+	不支持，请更新浏览器版本。
+</video>
+<table id="info2" border="1">
+	<tr>
+		<th>property</th>
+		<th>value</th>
+	</tr>
+</table>
+<script>
+	var oVideo2 = document.getElementById("media2");
+	var oInfo2 = document.getElementById("info2");
+
+	var mediaFiles = ["timessquare.webm","timessquare.ogv","timessquare.mp4"];
+	var mediaTypes = ["video/webm","video/ogv","video/mp4"];
+
+	oVideo2.poster = "images/poster.png";
+	oVideo2.src = "file:///C:/Users/Administrator/Desktop/读书/3-HTML5权威指南/笔记/images/timessquare.webm";
+	for(var i=0;i<mediaTypes.length; i++){
+		var flag = oVideo2.canPlayType(mediaTypes[i]);
+		if(!flag){
+			flag = "no";
+		}
+		oInfo2.innerHTML += "<tr><td>"+mediaTypes[i]+"</td><td>"+flag+"</td></tr>";
+	}
+</script>
+<br><hr><br>
+
+
+<!-- 控制媒体的播放 -->
+<video src="images/timessquare.webm" id="video3" autoplay preload="metadata" controls width="400" height="280">
+	您的浏览器不支持，请更新浏览器版本。
+</video>
+<button id="press">控制媒体播放</button>
+<table id="info3" border="1">
+	<tr>
+		<th>属性</th>
+		<th>值</th>
+	</tr>
+</table>
+<script>
+	var oVideo3 = document.getElementById("video3");
+	var oInfo3 = document.getElementById("info3");
+
+	document.getElementById("press").onclick = handMedia;
+	var pro = ["currentTime","duration","paused","ended"];
+
+	function handMedia(e){
+		oInfo3.innerHTML = "<tr><th>属性</th><th>值</th></tr>";
+		for(var i=0; i<pro.length;i++){
+			oInfo3.innerHTML += "<tr><td>"+pro[i]+"</td><td>"+oVideo3[pro[i]]+"</td></tr>";
+		}
+	}
+</script>
+<br><hr><br>
+
+<!-- 替换默认的媒体控制条 -->
+<video src="images/timessquare.webm" id="media4" preload="auto" width="400" height="280">
+	哈哈，不支持
+</video>
+<button id="play" class="btns">播放</button>
+<button id="pause" class="btns">暂停</button>
+<script>
+	var oVideo4 = document.getElementById("media4");
+	var btns = document.querySelectorAll(".btns");
+
+	for(var i=0;i<btns.length;i++){
+		btns[i].onclick = handle;
+	}
+	function handle(e){
+		if(e.target.id == "play"){
+			oVideo4.play();
+		}else {
+			oVideo4.pause();
+		}
+	}
+</script>
+
+
+ <!-- 本章结束 -->
+
+<br><br><br><br><br>
+</body>
+</html>
